@@ -1,8 +1,11 @@
 package com.codeclan.example.quill.components;
 
+import com.codeclan.example.quill.models.User;
+import com.codeclan.example.quill.models.UserType;
 import com.codeclan.example.quill.repositories.ScriptRepository;
 import com.codeclan.example.quill.repositories.Test1Repo;
 import com.codeclan.example.quill.repositories.Test2Repo;
+import com.codeclan.example.quill.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -21,10 +24,16 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     Test2Repo test2Repo;
 
+    @Autowired
+    UserRepository userRepository;
+
     public DataLoader() {
     }
 
     public void run(ApplicationArguments args) {
+
+        User user1 = new User("user", "password", "email@something.com", UserType.AUTHOR);
+        userRepository.save(user1);
 
 //        Test1 test1a = new Test1(1);
 //        Test1 test1b = new Test1(2);
