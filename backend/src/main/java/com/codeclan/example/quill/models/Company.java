@@ -1,12 +1,11 @@
 package com.codeclan.example.quill.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "companies")
-public class Company implements ISplitUser {
+public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
