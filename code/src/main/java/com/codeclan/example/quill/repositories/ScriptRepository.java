@@ -1,6 +1,6 @@
 package com.codeclan.example.quill.repositories;
 
-import com.codeclan.example.quill.models.ScriptsData;
+import com.codeclan.example.quill.models.Script;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ScriptRepository extends JpaRepository<ScriptsData, Long> {
+public interface ScriptRepository extends JpaRepository<Script, Long> {
 
 // ====================================================
 // ======       INDIVIDUAL TEST QUERIES         =======
@@ -16,7 +16,7 @@ public interface ScriptRepository extends JpaRepository<ScriptsData, Long> {
 
 // ****************      TITLE     ****************
     @Query(value = "SELECT * FROM SCRIPTSDATA WHERE TITLE LIKE %?1%", nativeQuery = true)
-    List<ScriptsData> getByTitle (String title);
+    List<Script> getByTitle (String title);
 
 // ****************      MALES     ****************
     @Query(value = "SELECT * FROM SCRIPTSDATA WHERE" +
@@ -24,23 +24,23 @@ public interface ScriptRepository extends JpaRepository<ScriptsData, Long> {
             "OR (?1 = 'eq' AND M = ?2)" +
             "OR (?1 = 'gt' AND M > ?2)" +
             "OR (?1 = 'lt' AND M < ?2)", nativeQuery = true)
-    List<ScriptsData> getByM (String mop, int m);
+    List<Script> getByM (String mop, int m);
 
 // ****************       CAST      ****************
     @Query(value = "SELECT * FROM SCRIPTSDATA WHERE" +
             "((?1 LIKE '%' AND ?2 = -1)" +
             "OR (?1 = 'gt' AND (M + F + N) >= ?2)" +
             "OR (?1 = 'lt' AND (M + F + N) <= ?2))", nativeQuery = true)
-    List<ScriptsData> getByCast (String cop, int cast);
+    List<Script> getByCast (String cop, int cast);
 
 // ****************   ROYALTY FREE   ****************
     @Query(value = "SELECT * FROM SCRIPTSDATA WHERE ((ROYALTYFREE = ?1) OR ?1 = false))", nativeQuery = true)
-    List<ScriptsData> getByRF (boolean rf);
+    List<Script> getByRF (boolean rf);
 
 // ****************      ONE TAG     ****************
     @Query(value = "SELECT * FROM SCRIPTSDATA WHERE TAGS LIKE %?1%",
             nativeQuery = true)
-    List<ScriptsData> getByTag (String tag);
+    List<Script> getByTag (String tag);
 
 // ****************  MULTIPLE TAGS??? ****************
 
@@ -88,7 +88,7 @@ public interface ScriptRepository extends JpaRepository<ScriptsData, Long> {
             "AND (TAGS LIKE %?16%)"
 
             , nativeQuery = true)
-    List<ScriptsData> getResults (
+    List<Script> getResults (
             String title,
             String author,
             String genre,

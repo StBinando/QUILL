@@ -1,11 +1,7 @@
 package com.codeclan.example.quill.components;
 
-import com.codeclan.example.quill.models.User;
-import com.codeclan.example.quill.models.UserType;
-import com.codeclan.example.quill.repositories.ScriptRepository;
-import com.codeclan.example.quill.repositories.Test1Repo;
-import com.codeclan.example.quill.repositories.Test2Repo;
-import com.codeclan.example.quill.repositories.UserRepository;
+import com.codeclan.example.quill.models.*;
+import com.codeclan.example.quill.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,47 +12,56 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    AuthorRepository authorRepository;
+
+    @Autowired
     ScriptRepository scriptDataRepository;
 
     @Autowired
-    Test1Repo test1Repo;
+    CompanyRepository companyRepository;
 
     @Autowired
-    Test2Repo test2Repo;
-
-    @Autowired
-    UserRepository userRepository;
+    ServiceRepository serviceRepository;
 
     public DataLoader() {
     }
 
     public void run(ApplicationArguments args) {
 
-        User user1 = new User("user", "password", "email@something.com", UserType.AUTHOR);
-        userRepository.save(user1);
+        User writer = new User(
+                "writer",
+                "password",
+                "email@something.com",
+                UserType.AUTHOR);
+        userRepository.save(writer);
 
-//        Test1 test1a = new Test1(1);
-//        Test1 test1b = new Test1(2);
-//        test1Repo.save(test1a);
-//        test1Repo.save(test1b);
-//        Test2 test2a = new Test2(test1a, "A");
-//        Test2 test2b = new Test2(test1a, "B");
-//        Test2 test2c = new Test2(test1a, "C");
-//        Test2 test2d = new Test2(test1a, "D");
-//        Test2 test2e = new Test2(test1b, "E");
-//        Test2 test2f = new Test2(test1b, "F");
-//        Test2 test2g = new Test2(test1b, "G");
-//        Test2 test2h = new Test2(test1b, "H");
-//        test2Repo.save(test2a);
-//        test2Repo.save(test2b);
-//        test2Repo.save(test2c);
-//        test2Repo.save(test2d);
-//        test2Repo.save(test2e);
-//        test2Repo.save(test2f);
-//        test2Repo.save(test2g);
-//        test2Repo.save(test2h);
-//
-//
+        User company = new User(
+                "company",
+                "password",
+                "email@something.com",
+                UserType.COMPANY);
+        userRepository.save(company);
+
+        User service = new User(
+                "service",
+                "password",
+                "email@something.com",
+                UserType.SERVICE);
+        userRepository.save(service);
+
+        Author William = new Author("Bob", "This is the story of my life","");
+        authorRepository.save(William);
+
+        Company minollo = new Company("Minollo Theatre", "Deceased project", "no pic");
+        companyRepository.save(minollo);
+
+        Service lights = new Service("Lights&Vision", "lights and sounds and projections", "no pic");
+        serviceRepository.save(lights);
+
+
 //        ScriptsData lysistrata = new ScriptsData(
 //                "Luv",
 //                "Murray Schisgal",

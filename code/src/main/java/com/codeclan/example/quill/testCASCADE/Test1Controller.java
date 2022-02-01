@@ -1,7 +1,7 @@
-package com.codeclan.example.quill.controllers;
+package com.codeclan.example.quill.testCASCADE;
 
-import com.codeclan.example.quill.models.Test1;
-import com.codeclan.example.quill.repositories.Test1Repo;
+import com.codeclan.example.quill.testCASCADE.Test1;
+import com.codeclan.example.quill.testCASCADE.Test1Repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

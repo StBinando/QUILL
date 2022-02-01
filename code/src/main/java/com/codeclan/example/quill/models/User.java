@@ -1,6 +1,6 @@
 package com.codeclan.example.quill.models;
 
-import sun.security.util.Password;
+import com.codeclan.example.quill.repositories.IUserProfile;
 
 import javax.persistence.*;
 
@@ -23,7 +23,12 @@ public class User {
     private String email;
 
     @Column(name = "user_type", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private UserType userType;
+
+//    @OneToOne(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
+//    private IUserProfile userprofile;
 
     public User(String username, String password, String email, UserType userType) {
         this.username = username;

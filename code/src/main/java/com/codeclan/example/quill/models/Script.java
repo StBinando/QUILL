@@ -1,11 +1,12 @@
 package com.codeclan.example.quill.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name = "scriptsdata")
-public class ScriptsData {
+@Table(name = "scripts")
+public class Script {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,21 +48,26 @@ public class ScriptsData {
     @JoinColumn(name = "pdf_id", referencedColumnName = "id")
     private PDF pdf;
 
-    public ScriptsData(String title,PDF pdf){
-        this.title = title;
-        this.pdf = pdf;
-    }
+    @Column(name = "uploadtime")
+    private LocalDateTime uploadTime;
 
-    public ScriptsData(String title,
-                       String author,
-                       String genre,
-                       int length,
-                       int m, int f, int n,
-                       String language,
-                       Boolean royaltyfree,
-                       String description,
-                       String tags,
-                       PDF pdf) {
+//    public Script(String title, PDF pdf){
+//        this.title = title;
+//        this.pdf = pdf;
+//    }
+
+    public Script(String title,
+                  String author,
+                  String genre,
+                  int length,
+                  int m,
+                  int f,
+                  int n,
+                  String language,
+                  Boolean royaltyfree,
+                  String description,
+                  String tags,
+                  PDF pdf) {
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -76,7 +82,7 @@ public class ScriptsData {
         this.pdf = pdf;
     }
 
-    public ScriptsData() {
+    public Script() {
     }
 
     public Long getId() {
@@ -181,6 +187,14 @@ public class ScriptsData {
 
     public void setPdf(PDF pdf) {
         this.pdf = pdf;
+    }
+
+    public LocalDateTime getUploadTime() {
+        return uploadTime;
+    }
+
+    public void setUploadTime(LocalDateTime uploadTime) {
+        this.uploadTime = uploadTime;
     }
 }
 

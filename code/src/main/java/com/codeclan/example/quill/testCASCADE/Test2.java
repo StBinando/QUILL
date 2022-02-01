@@ -1,5 +1,6 @@
-package com.codeclan.example.quill.models;
+package com.codeclan.example.quill.testCASCADE;
 
+import com.codeclan.example.quill.testCASCADE.Test1;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

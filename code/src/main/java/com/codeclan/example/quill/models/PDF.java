@@ -11,16 +11,16 @@ public class PDF {
 
     @Column(name = "pdf")
     @Lob
-    private byte[] pdfdata;
+    private byte[] pdfFile;
 
     @OneToOne(mappedBy = "pdf")
-    private ScriptsData scriptsData;
+    private Script script;
 
     public PDF() {
     }
 
     public PDF(byte[] pdf) {
-        this.pdfdata = pdf;
+        this.pdfFile = pdf;
     }
 
     public Long getId() {
@@ -31,11 +31,11 @@ public class PDF {
         this.id = id;
     }
 
-    public byte[] getPdfdata() {
-        return pdfdata;
+    public byte[] getPdfFile() {
+        return pdfFile;
     }
 
-    public void setPdfdata(byte[] pdfdata) {
-        this.pdfdata = pdfdata;
+    public void setPdfFile(byte[] pdfFile) {
+        this.pdfFile = pdfFile;
     }
 }

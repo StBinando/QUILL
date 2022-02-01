@@ -1,7 +1,7 @@
 package com.codeclan.example.quill.controllers;
 
-import com.codeclan.example.quill.models.User;
-import com.codeclan.example.quill.repositories.UserRepository;
+import com.codeclan.example.quill.models.Author;
+import com.codeclan.example.quill.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class UserController {
+public class AuthorController {
     @Autowired
-    UserRepository userRepository;
+    AuthorRepository authorRepository;
 
-    @GetMapping(value = "/users")
-    public ResponseEntity<List<User>> getUsers(){
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+    @GetMapping(value = "/authors")
+    public ResponseEntity<List<Author>> getAuthors(){
+        return new ResponseEntity<>(authorRepository.findAll(), HttpStatus.OK);
     }
 }

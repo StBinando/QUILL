@@ -1,6 +1,5 @@
-package com.codeclan.example.quill.repositories;
+package com.codeclan.example.quill.testCASCADE;
 
-import com.codeclan.example.quill.models.Test2;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,19 +1,10 @@
 package com.codeclan.example.quill.models;
 
-import com.codeclan.example.quill.repositories.IUserProfile;
-
 import javax.persistence.*;
 
-//@Entity
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
-@MappedSuperclass
-
-//@Entity(name="userprofile")
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name="usertype",
-//        discriminatorType = DiscriminatorType.INTEGER)
-public abstract class UserProfile {
+@Entity
+@Table(name = "companies")
+public class Company{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,16 +17,14 @@ public abstract class UserProfile {
     @Column(name = "bio", nullable = true)
     private String bio;
 
-    @Column(name = "profilePic", nullable = true)
+    @Column(name = "profilepic", nullable = true)
     private String profilePic;
 
-//    @OneToOne(mappedBy = "user")
-//    private User user;
 
-    public UserProfile() {
+    public Company() {
     }
 
-    public UserProfile(String name, String bio, String profilePic) {
+    public Company(String name, String bio, String profilePic) {
         this.name = name;
         this.bio = bio;
         this.profilePic = profilePic;
