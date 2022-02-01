@@ -1,5 +1,8 @@
 package com.codeclan.example.quill.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,41 +13,42 @@ public class Script {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = true)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", nullable = true)
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "Author", nullable = true)
+    @Column(name = "Author")
     private String author;
 
-    @Column(name = "genre", nullable = true)
+    @Column(name = "genre")
     private String genre;
 
-    @Column(name = "length", nullable = true)
+    @Column(name = "length")
     private int length;
 
-    @Column(name = "m", nullable = true)
+    @Column(name = "m")
     private int m;
-    @Column(name = "f", nullable = true)
+    @Column(name = "f")
     private int f;
-    @Column(name = "n", nullable = true)
+    @Column(name = "n")
     private int n;
 
-    @Column(name = "language", nullable = true)
+    @Column(name = "language")
     private String language;
 
-    @Column(name = "royaltyfree", nullable = true)
+    @Column(name = "royaltyfree")
     private Boolean royaltyfree;
 
-    @Column(name = "description", nullable = true)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "tags")
     private String tags;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
     @JoinColumn(name = "pdf_id", referencedColumnName = "id")
     private PDF pdf;
 
@@ -80,6 +84,7 @@ public class Script {
         this.description = description;
         this.tags = tags;
         this.pdf = pdf;
+        this.uploadTime = null;
     }
 
     public Script() {

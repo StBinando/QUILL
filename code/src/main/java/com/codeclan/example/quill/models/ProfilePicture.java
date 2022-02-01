@@ -3,6 +3,7 @@ package com.codeclan.example.quill.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name ="profilepictures")
 public class ProfilePicture {
 
     @Id

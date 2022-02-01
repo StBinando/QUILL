@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -15,11 +16,13 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
 // ====================================================
 
 // ****************      TITLE     ****************
-    @Query(value = "SELECT * FROM SCRIPTSDATA WHERE TITLE LIKE %?1%", nativeQuery = true)
+    @Transactional
+    @Query(value = "SELECT * FROM SCRIPTS WHERE TITLE LIKE %?1%", nativeQuery = true)
     List<Script> getByTitle (String title);
 
 // ****************      MALES     ****************
-    @Query(value = "SELECT * FROM SCRIPTSDATA WHERE" +
+    @Transactional
+    @Query(value = "SELECT * FROM SCRIPTS WHERE" +
             "(?1 LIKE '%' AND ?2 = -1)" +
             "OR (?1 = 'eq' AND M = ?2)" +
             "OR (?1 = 'gt' AND M > ?2)" +
@@ -27,18 +30,21 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
     List<Script> getByM (String mop, int m);
 
 // ****************       CAST      ****************
-    @Query(value = "SELECT * FROM SCRIPTSDATA WHERE" +
+    @Transactional
+    @Query(value = "SELECT * FROM SCRIPTS WHERE" +
             "((?1 LIKE '%' AND ?2 = -1)" +
             "OR (?1 = 'gt' AND (M + F + N) >= ?2)" +
             "OR (?1 = 'lt' AND (M + F + N) <= ?2))", nativeQuery = true)
     List<Script> getByCast (String cop, int cast);
 
 // ****************   ROYALTY FREE   ****************
-    @Query(value = "SELECT * FROM SCRIPTSDATA WHERE ((ROYALTYFREE = ?1) OR ?1 = false))", nativeQuery = true)
+    @Transactional
+    @Query(value = "SELECT * FROM SCRIPTS WHERE ((ROYALTYFREE = ?1) OR ?1 = false))", nativeQuery = true)
     List<Script> getByRF (boolean rf);
 
 // ****************      ONE TAG     ****************
-    @Query(value = "SELECT * FROM SCRIPTSDATA WHERE TAGS LIKE %?1%",
+    @Transactional
+    @Query(value = "SELECT * FROM SCRIPTS WHERE TAGS LIKE %?1%",
             nativeQuery = true)
     List<Script> getByTag (String tag);
 
@@ -50,7 +56,8 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
 // ======           FINAL BIG QUERY             =======
 // ====================================================
 
-    @Query(value = "SELECT * FROM SCRIPTSDATA WHERE" +
+    @Transactional
+    @Query(value = "SELECT * FROM SCRIPTS WHERE" +
 // ****************      TITLE     **************** ?1
             "(TITLE LIKE %?1%)" +
 // ****************     AUTHOR     **************** ?2

@@ -20,48 +20,48 @@ import java.util.Optional;
 @RestController
 public class ScriptController {
     @Autowired
-    ScriptRepository scriptDataRepository;
+    ScriptRepository scriptRepository;
 
 // ****************     ALL SCRIPTS    ****************
     @GetMapping(value = "/scripts")
     public ResponseEntity<List<Script>> getScripts(){
-        return new ResponseEntity<>(scriptDataRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(scriptRepository.findAll(), HttpStatus.OK);
     }
 
 // ****************     GET BY ID     ****************
     @GetMapping(value = "/scripts/{id}")
     public ResponseEntity<Optional<Script>> getById(@PathVariable Long id){
-        return new ResponseEntity<>(scriptDataRepository.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(scriptRepository.findById(id), HttpStatus.OK);
     }
 
 // ****************    GET BY TITLE   ****************
     @GetMapping(value = "/results/bytitle")
     public ResponseEntity<List<Script>> getByTitle(@RequestParam(name = "title") String title){
-        return new ResponseEntity<>(scriptDataRepository.getByTitle(title), HttpStatus.OK);
+        return new ResponseEntity<>(scriptRepository.getByTitle(title), HttpStatus.OK);
     }
 
 // ****************      GET BY M      **************** (eq m=x)(gt m=x&gtx)(lt m=x&ltx)
     @GetMapping(value = "/results/bym")
     public ResponseEntity<List<Script>> getByM(@RequestParam(name = "mop") String mop, @RequestParam(name = "m") int m) {
-        return new ResponseEntity<>(scriptDataRepository.getByM(mop, m), HttpStatus.OK);
+        return new ResponseEntity<>(scriptRepository.getByM(mop, m), HttpStatus.OK);
     }
 
 // ****************    GET BY CAST     **************** (eq m=x)(gt m=x&gtx)(lt m=x&ltx)
     @GetMapping(value = "/results/bycast")
     public ResponseEntity<List<Script>> getByCast(@RequestParam(name = "cop") String cop, @RequestParam(name = "cast") int cast){
-        return new ResponseEntity<>(scriptDataRepository.getByCast(cop, cast), HttpStatus.OK);
+        return new ResponseEntity<>(scriptRepository.getByCast(cop, cast), HttpStatus.OK);
     }
 
 // ****************   ROYALTY FREE    **************** (rf=true/false)
     @GetMapping(value = "/results/byrf")
     public ResponseEntity<List<Script>> getByRF(@RequestParam(name = "rf") boolean rf){
-        return new ResponseEntity<>(scriptDataRepository.getByRF(rf), HttpStatus.OK);
+        return new ResponseEntity<>(scriptRepository.getByRF(rf), HttpStatus.OK);
     }
 
 // ****************      ONE TAG      ****************
     @GetMapping(value = "/results/by1tag")
     public ResponseEntity<List<Script>> getBy1Tag(@RequestParam(name = "tag") String tag){
-        return new ResponseEntity<>(scriptDataRepository.getByTag(tag), HttpStatus.OK);
+        return new ResponseEntity<>(scriptRepository.getByTag(tag), HttpStatus.OK);
     }
 
 
@@ -88,7 +88,7 @@ public class ScriptController {
             @RequestParam(name = "royaltyfree") boolean royaltyfree,
             @RequestParam(name = "tags") String tag){
 
-        return new ResponseEntity<>(scriptDataRepository.getResults(
+        return new ResponseEntity<>(scriptRepository.getResults(
                 title,
                 author,
                 genre,
@@ -109,7 +109,7 @@ public class ScriptController {
 // ====================================================
 // ======            POST / GET  SCRIPT         =======
 // ====================================================
-    @PostMapping("/script/add")
+    @PostMapping(value = "/script/add")
     public String addScript(@RequestParam(name = "title") String title,
                             @RequestParam(name = "author") String author,
                             @RequestParam(name = "genre") String genre,
@@ -141,7 +141,7 @@ public class ScriptController {
                 tag,
                 pdfToSave);
         script.setUploadTime(LocalDateTime.now());
-        scriptDataRepository.save(script);
+        scriptRepository.save(script);
 
         return "redirect:/scripts/" + script.getId();
     }
@@ -162,9 +162,9 @@ public class ScriptController {
 //        return "redirect:/scripts/" + script.getId();
 //    }
 
-    @GetMapping("/scripts/pdf/{id}")
+    @GetMapping(value = "/scripts/pdf/{id}")
     public ResponseEntity<byte[]> getScript(@PathVariable Long id) {
-        Optional<Script> scriptsData = scriptDataRepository.findById(id);
+        Optional<Script> scriptsData = scriptRepository.findById(id);
 
 //        File file = new File("test.pdf");
 //        try

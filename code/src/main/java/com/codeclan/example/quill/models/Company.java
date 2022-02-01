@@ -8,16 +8,16 @@ public class Company{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = true)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "bio", nullable = true)
+    @Column(name = "bio")
     private String bio;
 
-    @Column(name = "profilepic", nullable = true)
+    @Column(name = "profilepic")
     private String profilePic;
 
 
