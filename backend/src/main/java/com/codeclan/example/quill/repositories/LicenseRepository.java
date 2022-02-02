@@ -1,11 +1,10 @@
 package com.codeclan.example.quill.repositories;
 
-import com.codeclan.example.quill.models.UserProfile;
+import com.codeclan.example.quill.models.License;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
+public interface LicenseRepository extends JpaRepository<License, Long> {
+
 }

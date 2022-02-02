@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "userprofiles")
-@JsonIgnoreProperties({"user", "profilepicture", "scripts"})
+@JsonIgnoreProperties({"user", "profilepicture", "scripts", "licenses"})
 public class UserProfile {
 
     @Id
@@ -33,22 +33,13 @@ public class UserProfile {
 
 
     @OneToOne(cascade = CascadeType.REMOVE)
-//    @JsonBackReference
     private ProfilePicture profilepicture;
 
     @OneToMany(mappedBy = "userProfile", cascade = CascadeType.REMOVE)
-//    @JsonBackReference
     private List<Script> scripts;
 
-
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "company_id", referencedColumnName = "id")
-//    private Company company;
-//
-//    @ManyToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
-//    @JsonBackReference
-//    private List<Script> scripts;
+    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.REMOVE)
+    private List<License> licenses;
 
 
 //    *******************************************************
@@ -126,5 +117,13 @@ public class UserProfile {
 
     public void setScripts(List<Script> scripts) {
         this.scripts = scripts;
+    }
+
+    public List<License> getLicenses() {
+        return licenses;
+    }
+
+    public void setLicenses(List<License> licenses) {
+        this.licenses = licenses;
     }
 }

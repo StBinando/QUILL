@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
 @Table(name = "scripts")
-@JsonIgnoreProperties({"pdfRecord", "userProfile"})
+@JsonIgnoreProperties({"pdfRecord", "userProfile", "licenses"})
 public class Script {
 
     @Id
@@ -57,6 +58,9 @@ public class Script {
     @ManyToOne
     @JoinColumn(name = "userprofileid")
     private UserProfile userProfile;
+
+//    @OneToMany
+//    private List<License> licenses;
 
 
     public Script(String title,
@@ -208,5 +212,13 @@ public class Script {
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
     }
+
+//    public List<License> getLicenses() {
+//        return licenses;
+//    }
+//
+//    public void setLicenses(List<License> licenses) {
+//        this.licenses = licenses;
+//    }
 }
 

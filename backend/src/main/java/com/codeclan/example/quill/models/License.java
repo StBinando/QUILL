@@ -1,48 +1,49 @@
 package com.codeclan.example.quill.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "licenses")
+@JsonIgnoreProperties({"userprofile", "script"})
 public class License {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="creationdate", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name="creationdate", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false)
     private Date creationDate;
 
-//    @Column(name = "creationdate", updatable = false)
-//    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-//    private Date creationDate = new Date();
+    @ManyToOne
+    @JoinColumn(name = "userprofileid")
+    private UserProfile userProfile;
 
-    @Column(name = "test")
-    private String test;
+//    @ManyToOne
+//    @JoinColumn(name = "script_id")
+//    private Script script;
+
+
+//    ******************      Constructors      ******************
 
     public License() {
     }
 
-    public License(String test) {
-        this.test = test;
+    public License(UserProfile userProfile, Script script) {
+        this.userProfile = userProfile;
+//        this.script = script;
     }
 
+    //    ******************      Getters and Setters      ******************
     public Date getCreationDate() {
         return creationDate;
     }
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public String getTest() {
-        return test;
-    }
-
-    public void setTest(String test) {
-        this.test = test;
     }
 
     public Long getId() {
@@ -53,5 +54,19 @@ public class License {
         this.id = id;
     }
 
+    public UserProfile getUserprofile() {
+        return userProfile;
+    }
 
+    public void setUserprofile(UserProfile userprofile) {
+        this.userProfile = userprofile;
+    }
+
+//    public Script getScript() {
+//        return script;
+//    }
+//
+//    public void setScript(Script script) {
+//        this.script = script;
+//    }
 }

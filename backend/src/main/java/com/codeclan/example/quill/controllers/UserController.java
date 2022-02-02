@@ -20,10 +20,6 @@ public class UserController {
     UserRepository userRepository;
     @Autowired
     UserProfileRepository userProfileRepository;
-//    @Autowired
-//    AuthorRepository authorRepository;
-//    @Autowired
-//    CompanyRepository companyRepository;
 
     @GetMapping(value = "/users")
     public ResponseEntity<List<User>> getUsers(){
@@ -35,17 +31,11 @@ public class UserController {
                           @RequestBody User _user)
     throws IOException {
         UserProfile newUserProfile = new UserProfile();
+
 //        if (usertype == UserType.AUTHOR){
-//            Author newAuthor = new Author();
-//            ArrayList<Script> scripts = new ArrayList<>();
-//            newAuthor.setScripts(scripts);
-//            authorRepository.save(newAuthor);
-//            newUserProfile.setAuthor(newAuthor);
 //        } else {
-//            Company newCompany = new Company();
-//            companyRepository.save(newCompany);
-//            newUserProfile.setCompany(newCompany);
 //        }
+
         newUserProfile.setUserType(usertype);
         userProfileRepository.save(newUserProfile);
         User newUser = _user;

@@ -1,8 +1,6 @@
 package com.codeclan.example.quill.controllers;
 
-import com.codeclan.example.quill.models.ProfilePicture;
-import com.codeclan.example.quill.models.User;
-import com.codeclan.example.quill.models.UserProfile;
+import com.codeclan.example.quill.models.*;
 import com.codeclan.example.quill.repositories.ProfilePictureRepository;
 import com.codeclan.example.quill.repositories.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,5 +56,17 @@ public class UserProfileController {
         return response;
     }
 
-//        @GetMapping (value = "userprofile/{id}/profilepicture")
+//    @GetMapping(value = "userprofile/{id}/licenses/scripts")
+//    public ResponseEntity<List<Script>> getScriptsByUserProfileId(@PathVariable Long id){
+//        UserProfile userProfile = userProfileRepository.getById(id);
+//        List<License> licenses = userProfile.getLicenses();
+//        ArrayList<Script> scripts = new ArrayList<>();
+//        for (License l : licenses) {
+//            scripts.add(l.getScript());
+//        }
+//        List<Script> scriptList = scripts;
+//
+//        return new ResponseEntity<>(scriptList, HttpStatus.OK);
+//    }
+
 }
