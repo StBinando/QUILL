@@ -59,8 +59,8 @@ public class Script {
     @JoinColumn(name = "userprofileid")
     private UserProfile userProfile;
 
-//    @OneToMany
-//    private List<License> licenses;
+    @OneToMany(mappedBy = "script", cascade = CascadeType.REMOVE)
+    private List<License> licenses;
 
 
     public Script(String title,
@@ -213,12 +213,12 @@ public class Script {
         this.userProfile = userProfile;
     }
 
-//    public List<License> getLicenses() {
-//        return licenses;
-//    }
-//
-//    public void setLicenses(List<License> licenses) {
-//        this.licenses = licenses;
-//    }
+    public List<License> getLicenses() {
+        return licenses;
+    }
+
+    public void setLicenses(List<License> licenses) {
+        this.licenses = licenses;
+    }
 }
 

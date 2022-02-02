@@ -60,11 +60,11 @@ public class UserProfileController {
     public ResponseEntity<List<License>> getScriptsByUserProfileId(@PathVariable Long id){
         UserProfile userProfile = userProfileRepository.getById(id);
         List<License> licenses = userProfile.getLicenses();
-//        ArrayList<Script> scripts = new ArrayList<>();
-//        for (License l : licenses) {
-//            scripts.add(l.getScript());
-//        }
-//        List<Script> scriptList = scripts;
+        ArrayList<Script> scripts = new ArrayList<>();
+        for (License l : licenses) {
+            scripts.add(l.getScript());
+        }
+        List<Script> scriptList = scripts;
 
         return new ResponseEntity<>(licenses, HttpStatus.OK);
     }

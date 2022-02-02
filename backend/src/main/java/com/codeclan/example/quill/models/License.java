@@ -22,9 +22,9 @@ public class License {
     @JoinColumn(name = "userprofileid")
     private UserProfile userProfile;
 
-//    @ManyToOne
-//    @JoinColumn(name = "script_id")
-//    private Script script;
+    @ManyToOne
+    @JoinColumn(name = "script_id")
+    private Script script;
 
 
 //    ******************      Constructors      ******************
@@ -62,11 +62,11 @@ public class License {
         this.userProfile = userprofile;
     }
 
-//    public Script getScript() {
-//        return script;
-//    }
-//
-//    public void setScript(Script script) {
-//        this.script = script;
-//    }
+    public Script getScript() {
+        return script;
+    }
+
+    public void setScript(Script script) {
+        this.script = script;
+    }
 }
