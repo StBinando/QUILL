@@ -1,5 +1,9 @@
 package com.codeclan.example.quill.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,8 +15,13 @@ public class ProfilePicture {
     private Long id;
 
     @Column(name = "profilepicture")
+    @JsonManagedReference
     @Lob
     private byte[] picture;
+
+    @OneToOne(mappedBy = "profilepicture")
+    @JsonManagedReference
+    private UserProfile userProfile;
 
     public ProfilePicture() {
     }
@@ -33,7 +42,16 @@ public class ProfilePicture {
         return picture;
     }
 
+    @JsonBackReference
     public void setPicture(byte[] picture) {
         this.picture = picture;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 }

@@ -48,7 +48,7 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
             nativeQuery = true)
     List<Script> getByTag (String tag);
 
-// ****************  MULTIPLE TAGS??? ****************
+
 
 
 
@@ -61,13 +61,13 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
 // ****************      TITLE     **************** ?1
             "(TITLE LIKE %?1%)" +
 // ****************     AUTHOR     **************** ?2
-            "AND (AUTHOR LIKE %?2%)" +
+            "AND (AUTHORNAME LIKE %?2%)" +
 // ****************      GENRE     **************** ?3
             "AND (GENRE LIKE %?3%)" +
 // ****************     LENGTH     **************** ?4 ?5
             "AND ((?4 LIKE '%' AND ?5 = -1)" +
-            "OR (?4 = 'gte' AND M >= ?5)" +
-            "OR (?4 = 'lte' AND M <= ?5))" +
+            "OR (?4 = 'gte' AND LENGTH >= ?5)" +
+            "OR (?4 = 'lte' AND LENGTH <= ?5))" +
 // ****************      MALES     **************** ?6 ?7
             "AND ((?6 LIKE '%' AND ?7 = -1)" +
             "OR (?6 = 'eq' AND M = ?7)" +
@@ -97,7 +97,7 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
             , nativeQuery = true)
     List<Script> getResults (
             String title,
-            String author,
+            String authorname,
             String genre,
             String lop, int length,     // operator - value
             String mop, int m,          // operator - value
@@ -107,4 +107,7 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
             String language,
             Boolean royaltyfree,
             String tag);
+
+//    @Transactional
+//    List<Script> findByAuthorId(Long id);
 }

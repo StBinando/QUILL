@@ -1,10 +1,12 @@
 package com.codeclan.example.quill.controllers;
 
-import com.codeclan.example.quill.models.Author;
+//import com.codeclan.example.quill.models.Author;
 import com.codeclan.example.quill.models.PDF;
 import com.codeclan.example.quill.models.Script;
-import com.codeclan.example.quill.repositories.AuthorRepository;
+import com.codeclan.example.quill.models.UserProfile;
+//import com.codeclan.example.quill.repositories.AuthorRepository;
 import com.codeclan.example.quill.repositories.ScriptRepository;
+import com.codeclan.example.quill.repositories.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,7 +27,7 @@ public class ScriptController {
     ScriptRepository scriptRepository;
 
     @Autowired
-    AuthorRepository authorRepository;
+    UserProfileRepository userProfileRepository;
 
 // ****************     ALL SCRIPTS    ****************
     @GetMapping(value = "/scripts")
@@ -63,16 +65,13 @@ public class ScriptController {
         return new ResponseEntity<>(scriptRepository.getByRF(rf), HttpStatus.OK);
     }
 
+// ----------------------removed----------------------
 // ****************      ONE TAG      ****************
     @GetMapping(value = "/results/by1tag")
     public ResponseEntity<List<Script>> getBy1Tag(@RequestParam(name = "tag") String tag){
         return new ResponseEntity<>(scriptRepository.getByTag(tag), HttpStatus.OK);
     }
 
-
-// ****************      ???????      ****************
-// ****************      ???????      ****************
-// ****************      ???????      ****************
 
 
 
@@ -82,7 +81,7 @@ public class ScriptController {
     @GetMapping(value = "/results")
     public ResponseEntity<List<Script>> getResults(
             @RequestParam(name = "title") String title,
-            @RequestParam(name = "author") String author,
+            @RequestParam(name = "authorname") String authorname,
             @RequestParam(name = "genre") String genre,
             @RequestParam(name = "lop") String lop, @RequestParam(name = "length") int length,
             @RequestParam(name = "mop") String mop, @RequestParam(name = "m") int m,
@@ -95,7 +94,7 @@ public class ScriptController {
 
         return new ResponseEntity<>(scriptRepository.getResults(
                 title,
-                author,
+                authorname,
                 genre,
                 lop, length,
                 mop, m,
@@ -111,13 +110,15 @@ public class ScriptController {
     }
 
 
+
+
 // ====================================================
-// ======            POST / GET  SCRIPT         =======
+// ======             POST with PDF             =======
 // ====================================================
     @PostMapping(value = "/author/{id}/script/add")
     public String addScript(@PathVariable Long id,
                                @RequestParam(name = "title") String title,
-                               @RequestParam(name = "author") String authorName,
+                               @RequestParam(name = "authorname") String authorName,
                                @RequestParam(name = "genre") String genre,
                                @RequestParam(name = "length") int length,
                                @RequestParam(name = "m") int m,
@@ -147,41 +148,54 @@ public class ScriptController {
                 tag,
                 pdfToSave);
 
-        Author author = authorRepository.getById(id);
-        System.out.println("author ID = " + author.getId());
+        UserProfile userProfile = userProfileRepository.getById(id);
+//        System.out.println("author ID = " + author.getId());
 
-        script.setAuthorRecord(author);
+        script.setUserProfile(userProfile);
         script.setUploadTime(LocalDateTime.now());
 
         scriptRepository.save(script);
-        author.getScripts().add(script);
-//        authorRepository.save(author);
+//        author.getScripts().add(script);
 
-        System.out.println("script > author_id: "+ script.getAuthorRecord().getId());
-        System.out.println(author.getScripts().get(0).getTitle());
+//        System.out.println("author_id:from script "+ script.getAuthor().getId());
+//        System.out.println(author.getScripts().get(0).getTitle());
+//        System.out.println("scripts from author_id: "+ authorRepository.getById(id).getScripts().get(0).getTitle());
+
         return script.getTitle();
     }
 
-//    @PostMapping("/script/addTitle")
-//    public String addScript(@RequestParam(name = "title") String title,
-//
-//                            @RequestParam("pdf") MultipartFile pdf, Model model)
-//            throws IOException {
-//        PDF pdfToSave = new PDF();
-//        pdfToSave.setPdfdata(pdf.getBytes());
-//
-//        Script script = new Script(
-//                title,
-//                pdfToSave);
-//        scriptDataRepository.save(script);
-//
-//        return "redirect:/scripts/" + script.getId();
+//    @GetMapping(value = "/authors/{id}/scripts")
+//    public ResponseEntity<List<Script>> getByAuthorId(@PathVariable Long id){
+//        return new ResponseEntity<>(scriptRepository.findByAuthorId(id), HttpStatus.OK);
 //    }
+
+
+
+// ====================================================
+// ======               GET PDF                 =======
+// ====================================================
 
     @GetMapping(value = "/scripts/pdf/{id}")
     public ResponseEntity<byte[]> getScript(@PathVariable Long id) {
         Optional<Script> scriptsData = scriptRepository.findById(id);
 
+
+        System.out.println(System.getProperty("user.dir"));  // print working directory on console
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("output.pdf","output.pdf");
+        headers.setCacheControl("must-revalidate, post-check=0,pre-check=0");
+        ResponseEntity<byte[]> response = new ResponseEntity<>(scriptsData.get().getPdfRecord().getPdfFile(),headers, HttpStatus.OK);
+        return response;
+    }
+
+
+
+
+// ====================================================
+// ======           download pdf file           =======
+// ====================================================
 //        File file = new File("test.pdf");
 //        try
 //        {
@@ -197,14 +211,4 @@ public class ScriptController {
 //        }
 
 //        return model.getAttribute("pdf");
-
-        System.out.println(System.getProperty("user.dir"));  // print working directory on console
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDispositionFormData("output.pdf","output.pdf");
-        headers.setCacheControl("must-revalidate, post-check=0,pre-check=0");
-        ResponseEntity<byte[]> response = new ResponseEntity<>(scriptsData.get().getPdfRecord().getPdfFile(),headers, HttpStatus.OK);
-        return response;
-    }
 }

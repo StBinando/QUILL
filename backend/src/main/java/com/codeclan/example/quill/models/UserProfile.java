@@ -1,16 +1,15 @@
 package com.codeclan.example.quill.models;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
 @Table(name = "userprofiles")
-
-@JsonIgnoreProperties({ "author", "company" })
+@JsonIgnoreProperties({"user", "profilepicture", "scripts"})
 public class UserProfile {
 
     @Id
@@ -18,49 +17,58 @@ public class UserProfile {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = true)
-    private String name;
-
-    @Column(name = "bio", nullable = true)
-    private String bio;
-
-    @Column(name = "profilePic", nullable = true)
-    private String profilePic;
-
-    @Column(name = "user_type", nullable = true)
-    @Enumerated(value = EnumType.STRING)
-    private UserType userType;
-
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private Author author;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    private Company company;
-
-
     @OneToOne(mappedBy = "userProfile")
     private User user;
 
 
+    @Column(name = "name")
+    private String name;
 
+    @Column(name = "bio")
+    private String bio;
+
+    @Column(name = "user_type")
+    @Enumerated(value = EnumType.STRING)
+    private UserType userType;
+
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+//    @JsonBackReference
+    private ProfilePicture profilepicture;
+
+    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.REMOVE)
+//    @JsonBackReference
+    private List<Script> scripts;
+
+
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "company_id", referencedColumnName = "id")
+//    private Company company;
+//
+//    @ManyToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+//    @JsonBackReference
+//    private List<Script> scripts;
+
+
+//    *******************************************************
+//                       CONSTRUCTORS
+//    *******************************************************
 
     public UserProfile() {
     }
 
     public UserProfile(String name,
                        String bio,
-                       String profilePic,
                        UserType userType) {
         this.name = name;
         this.bio = bio;
-        this.profilePic = profilePic;
         this.userType = userType;
     }
 
-
+//    *******************************************************
+//                   GETTERS AND SETTERS
+//    *******************************************************
 
     public Long getId() {
         return id;
@@ -87,12 +95,13 @@ public class UserProfile {
         this.bio = bio;
     }
 
-    public String getProfilePic() {
-        return profilePic;
+
+    public ProfilePicture getProfilepicture() {
+        return profilepicture;
     }
 
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
+    public void setProfilepicture(ProfilePicture profilepicture) {
+        this.profilepicture = profilepicture;
     }
 
     public UserType getUserType() {
@@ -103,28 +112,19 @@ public class UserProfile {
         this.userType = userType;
     }
 
-
-    public Author getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Company getCompany() {
-        return company;
+    public List<Script> getScripts() {
+        return scripts;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setScripts(List<Script> scripts) {
+        this.scripts = scripts;
     }
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 }

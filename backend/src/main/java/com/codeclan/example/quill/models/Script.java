@@ -1,8 +1,6 @@
 package com.codeclan.example.quill.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "scripts")
-@JsonIgnoreProperties({"pdfRecord"})
+@JsonIgnoreProperties({"pdfRecord", "userProfile"})
 public class Script {
 
     @Id
@@ -21,8 +19,8 @@ public class Script {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "Author")
-    private String author;
+    @Column(name = "authorname")
+    private String authorname;
 
     @Column(name = "genre")
     private String genre;
@@ -57,16 +55,12 @@ public class Script {
     private LocalDateTime uploadTime;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author authorRecord;
+    @JoinColumn(name = "userprofileid")
+    private UserProfile userProfile;
 
-//    public Script(String title, PDF pdf){
-//        this.title = title;
-//        this.pdf = pdf;
-//    }
 
     public Script(String title,
-                  String author,
+                  String authorname,
                   String genre,
                   int length,
                   int m,
@@ -78,7 +72,7 @@ public class Script {
                   String tags,
                   PDF pdf) {
         this.title = title;
-        this.author = author;
+        this.authorname = authorname;
         this.genre = genre;
         this.length = length;
         this.m = m;
@@ -111,12 +105,12 @@ public class Script {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorname() {
+        return authorname;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorname(String authorname) {
+        this.authorname = authorname;
     }
 
     public String getGenre() {
@@ -207,14 +201,12 @@ public class Script {
         this.uploadTime = uploadTime;
     }
 
-    public Author getAuthorRecord() {
-        return authorRecord;
+    public UserProfile getUserProfile() {
+        return userProfile;
     }
 
-    public void setAuthorRecord(Author authorRecord) {
-        this.authorRecord = authorRecord;
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
-
-
 }
 

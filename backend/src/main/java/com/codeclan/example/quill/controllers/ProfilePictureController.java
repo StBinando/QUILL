@@ -1,7 +1,9 @@
 package com.codeclan.example.quill.controllers;
 
 import com.codeclan.example.quill.models.ProfilePicture;
+import com.codeclan.example.quill.models.UserProfile;
 import com.codeclan.example.quill.repositories.ProfilePictureRepository;
+import com.codeclan.example.quill.repositories.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,27 +22,46 @@ public class ProfilePictureController {
     @Autowired
     ProfilePictureRepository profilePictureRepository;
 
+    @Autowired
+    UserProfileRepository userProfileRepository;
+
+
+
+
+//  ******************      GET ALL PICTURES       ******************
+
     @GetMapping(value = "/profilepictures")
     public ResponseEntity<List<ProfilePicture>> getProfilePictures(){
         return new ResponseEntity<>(profilePictureRepository.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/profilepicture/add")
-    public String addProfilePicture(@RequestParam("profilepicture") MultipartFile pic, Model model)
+
+//  ******************      POST PICTURE        ******************
+
+    @PostMapping(value = "/userprofile/{id}/profilepicture/add")
+    public String addProfilePicture(@PathVariable Long id,
+                                         @RequestParam("profilepicture") MultipartFile pic, Model model)
             throws IOException {
         ProfilePicture picToSave = new ProfilePicture();
         picToSave.setPicture(pic.getBytes());
+        UserProfile userProfile = userProfileRepository.getById(id);
+        userProfile.setProfilepicture(picToSave);
+
 
         profilePictureRepository.save(picToSave);
+//        userProfileRepository.getById(id).setProfilepicture(picToSave);
 
-        return "redirect:/profilepictures/" + picToSave.getId();
+        return userProfileRepository.getById(id).getName();
     }
+
+
+//  ******************      GET PICTURE by ID       ******************
 
     @GetMapping(value = "/profilepictures/{id}")
     public ResponseEntity<byte[]> getProfilePictureById(@PathVariable Long id) {
         Optional<ProfilePicture> profilePicture = profilePictureRepository.findById(id);
 
-        System.out.println(System.getProperty("user.dir"));  // print working directory on console
+//        System.out.println(System.getProperty("user.dir"));  // print working directory on console
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
