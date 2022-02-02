@@ -56,17 +56,17 @@ public class UserProfileController {
         return response;
     }
 
-//    @GetMapping(value = "userprofile/{id}/licenses/scripts")
-//    public ResponseEntity<List<Script>> getScriptsByUserProfileId(@PathVariable Long id){
-//        UserProfile userProfile = userProfileRepository.getById(id);
-//        List<License> licenses = userProfile.getLicenses();
+    @GetMapping(value = "userprofile/{id}/licenses")
+    public ResponseEntity<List<License>> getScriptsByUserProfileId(@PathVariable Long id){
+        UserProfile userProfile = userProfileRepository.getById(id);
+        List<License> licenses = userProfile.getLicenses();
 //        ArrayList<Script> scripts = new ArrayList<>();
 //        for (License l : licenses) {
 //            scripts.add(l.getScript());
 //        }
 //        List<Script> scriptList = scripts;
-//
-//        return new ResponseEntity<>(scriptList, HttpStatus.OK);
-//    }
+
+        return new ResponseEntity<>(licenses, HttpStatus.OK);
+    }
 
 }
