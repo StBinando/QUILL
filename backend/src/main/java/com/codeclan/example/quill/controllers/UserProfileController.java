@@ -57,16 +57,26 @@ public class UserProfileController {
     }
 
     @GetMapping(value = "userprofile/{id}/licenses")
-    public ResponseEntity<List<License>> getScriptsByUserProfileId(@PathVariable Long id){
+    public ResponseEntity<List<License>> getLicensesByUserProfileId(@PathVariable Long id){
+        UserProfile userProfile = userProfileRepository.getById(id);
+        List<License> licenses = userProfile.getLicenses();
+        return new ResponseEntity<>(licenses, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "userprofile/{id}/licenses/scripts")
+    public ResponseEntity<List<Script>> getScriptsByUserProfileId(@PathVariable Long id){
         UserProfile userProfile = userProfileRepository.getById(id);
         List<License> licenses = userProfile.getLicenses();
         ArrayList<Script> scripts = new ArrayList<>();
         for (License l : licenses) {
             scripts.add(l.getScript());
         }
+        System.out.println("scripts size: " + scripts.size());
         List<Script> scriptList = scripts;
+        System.out.println("scriptList size: " + scriptList.size());
+        System.out.println(licenses.get(0).getCreationDate());
 
-        return new ResponseEntity<>(licenses, HttpStatus.OK);
+        return new ResponseEntity<>(scriptList, HttpStatus.OK);
     }
 
 }

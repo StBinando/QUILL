@@ -152,7 +152,7 @@ public class ScriptController {
 //        System.out.println("author ID = " + author.getId());
 
         script.setUserProfile(userProfile);
-        script.setUploadTime(LocalDateTime.now());
+//        script.setUploadTime(LocalDateTime.now());
 
         scriptRepository.save(script);
 //        author.getScripts().add(script);

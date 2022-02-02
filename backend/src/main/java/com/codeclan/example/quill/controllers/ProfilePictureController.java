@@ -47,7 +47,18 @@ public class ProfilePictureController {
         UserProfile userProfile = userProfileRepository.getById(id);
         userProfile.setProfilepicture(picToSave);
 
+        profilePictureRepository.save(picToSave);
+        return userProfileRepository.getById(id).getName();
+    }
 
+    @PutMapping(value = "/userprofile/{id}/profilepicture/add")
+    public String updateProfilePicture(@PathVariable Long id,
+                                    @RequestParam("profilepicture") MultipartFile pic, Model model)
+            throws IOException {
+        ProfilePicture picToSave = new ProfilePicture();
+        picToSave.setPicture(pic.getBytes());
+        Optional<UserProfile> userProfile = userProfileRepository.findById(id);
+        userProfile.get().setProfilepicture(picToSave);
         profilePictureRepository.save(picToSave);
 //        userProfileRepository.getById(id).setProfilepicture(picToSave);
 
@@ -60,8 +71,6 @@ public class ProfilePictureController {
     @GetMapping(value = "/profilepictures/{id}")
     public ResponseEntity<byte[]> getProfilePictureById(@PathVariable Long id) {
         Optional<ProfilePicture> profilePicture = profilePictureRepository.findById(id);
-
-//        System.out.println(System.getProperty("user.dir"));  // print working directory on console
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);

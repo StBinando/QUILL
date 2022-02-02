@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -52,16 +53,19 @@ public class Script {
     @JoinColumn(name = "pdf_id", referencedColumnName = "id")
     private PDF pdf;
 
-    @Column(name = "uploadtime")
-    private LocalDateTime uploadTime;
+    @OneToMany(mappedBy = "script", cascade = CascadeType.REMOVE)
+    private List<License> licenses;
 
     @ManyToOne
     @JoinColumn(name = "userprofileid")
     private UserProfile userProfile;
 
-    @OneToMany(mappedBy = "script", cascade = CascadeType.REMOVE)
-    private List<License> licenses;
+//    @Column(name = "uploadtime")
+//    private LocalDateTime uploadTime;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="uploadtime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false)
+    private Date uploadtime;
 
     public Script(String title,
                   String authorname,
@@ -87,7 +91,6 @@ public class Script {
         this.description = description;
         this.tags = tags;
         this.pdf = pdf;
-        this.uploadTime = null;
     }
 
     public Script() {
@@ -197,13 +200,6 @@ public class Script {
         this.pdf = pdf;
     }
 
-    public LocalDateTime getUploadTime() {
-        return uploadTime;
-    }
-
-    public void setUploadTime(LocalDateTime uploadTime) {
-        this.uploadTime = uploadTime;
-    }
 
     public UserProfile getUserProfile() {
         return userProfile;
@@ -219,6 +215,14 @@ public class Script {
 
     public void setLicenses(List<License> licenses) {
         this.licenses = licenses;
+    }
+
+    public Date getUploadtime() {
+        return uploadtime;
+    }
+
+    public void setUploadtime(Date uploadtime) {
+        this.uploadtime = uploadtime;
     }
 }
 
