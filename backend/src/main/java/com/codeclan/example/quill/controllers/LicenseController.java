@@ -25,13 +25,12 @@ public class LicenseController {
     public License addLicense(@PathVariable Long id1,
                               @PathVariable Long id2)
             throws IOException {
-        UserProfile userProfile = userProfileRepository.getById(id1);
+        Profile profile = userProfileRepository.getById(id1);
         Script script = scriptRepository.getById(id2);
-        License license = new License(userProfile, script);
+        License license = new License(profile, script);
 
         licenseRepository.save(license);
         return licenseRepository.getById(license.getId());
-//        return "license created";
     }
 
     @GetMapping(value = "/licenses")

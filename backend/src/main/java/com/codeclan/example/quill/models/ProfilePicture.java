@@ -1,7 +1,6 @@
 package com.codeclan.example.quill.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -21,7 +20,7 @@ public class ProfilePicture {
 
     @OneToOne(mappedBy = "profilepicture")
     @JsonManagedReference
-    private UserProfile userProfile;
+    private Profile profile;
 
     public ProfilePicture() {
     }
@@ -47,11 +46,11 @@ public class ProfilePicture {
         this.picture = picture;
     }
 
-    public UserProfile getUserProfile() {
-        return userProfile;
+    public Profile getUserProfile() {
+        return profile;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setUserProfile(Profile profile) {
+        this.profile = profile;
     }
 }

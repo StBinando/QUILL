@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,16 +29,16 @@ public class UserController {
     public User addUser(@PathVariable(name = "usertype") UserType usertype,
                           @RequestBody User _user)
     throws IOException {
-        UserProfile newUserProfile = new UserProfile();
+        Profile newProfile = new Profile();
 
 //        if (usertype == UserType.AUTHOR){
 //        } else {
 //        }
 
-        newUserProfile.setUserType(usertype);
-        userProfileRepository.save(newUserProfile);
+        newProfile.setUserType(usertype);
+        userProfileRepository.save(newProfile);
         User newUser = _user;
-        newUser.setUserprofile(newUserProfile);
+        newUser.setUserprofile(newProfile);
         userRepository.save(newUser);
 
         return newUser;

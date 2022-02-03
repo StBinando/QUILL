@@ -8,16 +8,16 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "userprofiles")
+@Table(name = "profiles")
 @JsonIgnoreProperties({"user", "profilepicture", "scripts", "licenses"})
-public class UserProfile {
+public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne(mappedBy = "userProfile")
+    @OneToOne(mappedBy = "profile")
     private User user;
 
 
@@ -35,10 +35,11 @@ public class UserProfile {
     @OneToOne(cascade = CascadeType.REMOVE)
     private ProfilePicture profilepicture;
 
-    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "profile")//, cascade = CascadeType.REMOVE)
+    //@OneToMany
     private List<Script> scripts;
 
-    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "profile")//, cascade = CascadeType.REMOVE)
     private List<License> licenses;
 
 
@@ -46,12 +47,12 @@ public class UserProfile {
 //                       CONSTRUCTORS
 //    *******************************************************
 
-    public UserProfile() {
+    public Profile() {
     }
 
-    public UserProfile(String name,
-                       String bio,
-                       UserType userType) {
+    public Profile(String name,
+                   String bio,
+                   UserType userType) {
         this.name = name;
         this.bio = bio;
         this.userType = userType;

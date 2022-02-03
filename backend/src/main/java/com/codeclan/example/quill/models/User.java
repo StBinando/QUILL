@@ -24,8 +24,8 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    @JoinColumn(name = "userprofile_id", referencedColumnName = "id")
-    private UserProfile userProfile;
+    @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    private Profile profile;
 
 
     public User(String username,
@@ -71,11 +71,11 @@ public class User {
         this.email = email;
     }
 
-    public UserProfile getUserProfile() {
-        return userProfile;
+    public Profile getUserProfile() {
+        return profile;
     }
 
-    public void setUserprofile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setUserprofile(Profile profile) {
+        this.profile = profile;
     }
 }

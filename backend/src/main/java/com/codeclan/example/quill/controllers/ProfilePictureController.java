@@ -1,7 +1,7 @@
 package com.codeclan.example.quill.controllers;
 
 import com.codeclan.example.quill.models.ProfilePicture;
-import com.codeclan.example.quill.models.UserProfile;
+import com.codeclan.example.quill.models.Profile;
 import com.codeclan.example.quill.repositories.ProfilePictureRepository;
 import com.codeclan.example.quill.repositories.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +44,8 @@ public class ProfilePictureController {
             throws IOException {
         ProfilePicture picToSave = new ProfilePicture();
         picToSave.setPicture(pic.getBytes());
-        UserProfile userProfile = userProfileRepository.getById(id);
-        userProfile.setProfilepicture(picToSave);
+        Profile profile = userProfileRepository.getById(id);
+        profile.setProfilepicture(picToSave);
 
         profilePictureRepository.save(picToSave);
         return userProfileRepository.getById(id).getName();
@@ -57,7 +57,7 @@ public class ProfilePictureController {
             throws IOException {
         ProfilePicture picToSave = new ProfilePicture();
         picToSave.setPicture(pic.getBytes());
-        Optional<UserProfile> userProfile = userProfileRepository.findById(id);
+        Optional<Profile> userProfile = userProfileRepository.findById(id);
         userProfile.get().setProfilepicture(picToSave);
         profilePictureRepository.save(picToSave);
 //        userProfileRepository.getById(id).setProfilepicture(picToSave);

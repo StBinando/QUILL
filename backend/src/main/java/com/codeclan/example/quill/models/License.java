@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "licenses")
-@JsonIgnoreProperties({"userprofile", "script"})
+@JsonIgnoreProperties({"profile", "script"})
 public class License {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,8 @@ public class License {
     private Date creationDate;
 
     @ManyToOne
-    @JoinColumn(name = "userprofileid")
-    private UserProfile userProfile;
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
 
     @ManyToOne
     @JoinColumn(name = "script_id")
@@ -32,9 +32,9 @@ public class License {
     public License() {
     }
 
-    public License(UserProfile userProfile, Script script) {
-        this.userProfile = userProfile;
-//        this.script = script;
+    public License(Profile profile, Script script) {
+        this.profile = profile;
+        this.script = script;
     }
 
     //    ******************      Getters and Setters      ******************
@@ -54,12 +54,12 @@ public class License {
         this.id = id;
     }
 
-    public UserProfile getUserprofile() {
-        return userProfile;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setUserprofile(UserProfile userprofile) {
-        this.userProfile = userprofile;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public Script getScript() {

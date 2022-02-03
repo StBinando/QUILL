@@ -1,7 +1,9 @@
 package com.codeclan.example.quill.controllers;
 
 import com.codeclan.example.quill.models.*;
+import com.codeclan.example.quill.repositories.LicenseRepository;
 import com.codeclan.example.quill.repositories.ProfilePictureRepository;
+import com.codeclan.example.quill.repositories.ScriptRepository;
 import com.codeclan.example.quill.repositories.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,31 +24,39 @@ public class UserProfileController {
     UserProfileRepository userProfileRepository;
     @Autowired
     ProfilePictureRepository profilePictureRepository;
+    @Autowired
+    ScriptRepository scriptRepository;
+    @Autowired
+    LicenseRepository licenseRepository;
 
     @GetMapping(value = "/userprofiles")
-    public ResponseEntity<List<UserProfile>> getUserProfiles(){
+    public ResponseEntity<List<Profile>> getUserProfiles(){
         return new ResponseEntity<>(userProfileRepository.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping (value = "/userprofiles/{id}")
-    public UserProfile addUser(@PathVariable(name = "id") Long id,
-                               @RequestBody UserProfile _userProfile)
-            throws IOException {
-        Optional<UserProfile> oldRecord = userProfileRepository.findById(id);
-        ProfilePicture profilePicture = oldRecord.get().getProfilepicture();
-        UserProfile userProfile = _userProfile;
-        userProfile.setProfilepicture(profilePicture);
-        userProfile.setId(id);
-        userProfileRepository.save(userProfile);
-
-        return userProfile;
+    @GetMapping(value = "/userprofiles/{id}")
+    public ResponseEntity<Optional<Profile>> getUserProfiles(@PathVariable(name = "id") Long id){
+        return new ResponseEntity<>(userProfileRepository.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "userprofile/{id}/profilepicture")
+    @PutMapping (value = "/userprofiles/{id}")
+    public Profile addUser(@PathVariable(name = "id") Long id,
+                           @RequestBody Profile _Profile)
+            throws IOException {
+        Optional<Profile> oldRecord = userProfileRepository.findById(id);
+        ProfilePicture profilePicture = oldRecord.get().getProfilepicture();
+        Profile profile = _Profile;
+        profile.setProfilepicture(profilePicture);
+        profile.setId(id);
+        userProfileRepository.save(profile);
+
+        return profile;
+    }
+
+    @GetMapping(value = "/userprofile/{id}/profilepicture")
     public ResponseEntity<byte[]> getProfilePictureByUserProfileId(@PathVariable Long id) {
-        Optional<UserProfile> userProfile = userProfileRepository.findById(id);
+        Optional<Profile> userProfile = userProfileRepository.findById(id);
         ProfilePicture profilePicture = userProfile.get().getProfilepicture();
-//        Optional<ProfilePicture> profilePicture = profilePictureRepository.findById(picture_id);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
@@ -56,27 +66,29 @@ public class UserProfileController {
         return response;
     }
 
-    @GetMapping(value = "userprofile/{id}/licenses")
-    public ResponseEntity<List<License>> getLicensesByUserProfileId(@PathVariable Long id){
-        UserProfile userProfile = userProfileRepository.getById(id);
-        List<License> licenses = userProfile.getLicenses();
-        return new ResponseEntity<>(licenses, HttpStatus.OK);
+    @GetMapping(value = "/userprofile/{id}/scripts")
+    public ResponseEntity<List<Script>> getScriptsByUserProfileId(@PathVariable Long id) {
+        List<Script> scriptList = scriptRepository.getByProfileId(id);
+        System.out.println(scriptList.size());
+
+
+        return new ResponseEntity<>(scriptList,HttpStatus.OK);
     }
 
-    @GetMapping(value = "userprofile/{id}/licenses/scripts")
-    public ResponseEntity<List<Script>> getScriptsByUserProfileId(@PathVariable Long id){
-        UserProfile userProfile = userProfileRepository.getById(id);
-        List<License> licenses = userProfile.getLicenses();
-        ArrayList<Script> scripts = new ArrayList<>();
-        for (License l : licenses) {
-            scripts.add(l.getScript());
-        }
-        System.out.println("scripts size: " + scripts.size());
-        List<Script> scriptList = scripts;
-        System.out.println("scriptList size: " + scriptList.size());
-        System.out.println(licenses.get(0).getCreationDate());
+    @GetMapping(value = "/userprofile/{id}/licenses")
+    public ResponseEntity<List<License>> getLicensesByUserProfileId(@PathVariable Long id){
+        List<License> licenseList = licenseRepository.getByProfileId(id);
+       return new ResponseEntity<>(licenseList, HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(scriptList, HttpStatus.OK);
+    @GetMapping(value = "/userprofile/{id}/licenses/scripts")
+    public ResponseEntity<List<Script>> getScriptsByUserProfileIdAndlicense(@PathVariable Long id){
+        List<Script> returnList = new ArrayList<>();
+        List<License> licenseList = licenseRepository.getByProfileId(id);
+        for(License l : licenseList){
+            returnList.add(l.getScript());
+        }
+        return new ResponseEntity<>(returnList, HttpStatus.OK);
     }
 
 }

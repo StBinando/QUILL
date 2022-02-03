@@ -3,7 +3,7 @@ package com.codeclan.example.quill.controllers;
 //import com.codeclan.example.quill.models.Author;
 import com.codeclan.example.quill.models.PDF;
 import com.codeclan.example.quill.models.Script;
-import com.codeclan.example.quill.models.UserProfile;
+import com.codeclan.example.quill.models.Profile;
 //import com.codeclan.example.quill.repositories.AuthorRepository;
 import com.codeclan.example.quill.repositories.ScriptRepository;
 import com.codeclan.example.quill.repositories.UserProfileRepository;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -148,10 +147,10 @@ public class ScriptController {
                 tag,
                 pdfToSave);
 
-        UserProfile userProfile = userProfileRepository.getById(id);
+        Profile profile = userProfileRepository.getById(id);
 //        System.out.println("author ID = " + author.getId());
 
-        script.setUserProfile(userProfile);
+        script.setUserProfile(profile);
 //        script.setUploadTime(LocalDateTime.now());
 
         scriptRepository.save(script);

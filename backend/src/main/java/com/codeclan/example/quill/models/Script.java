@@ -3,14 +3,13 @@ package com.codeclan.example.quill.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 
 @Entity
 @Table(name = "scripts")
-@JsonIgnoreProperties({"pdfRecord", "userProfile", "licenses"})
+@JsonIgnoreProperties({"pdfRecord", "profile", "licenses"})
 public class Script {
 
     @Id
@@ -57,8 +56,8 @@ public class Script {
     private List<License> licenses;
 
     @ManyToOne
-    @JoinColumn(name = "userprofileid")
-    private UserProfile userProfile;
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
 
 //    @Column(name = "uploadtime")
 //    private LocalDateTime uploadTime;
@@ -201,12 +200,12 @@ public class Script {
     }
 
 
-    public UserProfile getUserProfile() {
-        return userProfile;
+    public Profile getUserProfile() {
+        return profile;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setUserProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public List<License> getLicenses() {

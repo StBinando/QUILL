@@ -20,6 +20,11 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
     @Query(value = "SELECT * FROM SCRIPTS WHERE TITLE LIKE %?1%", nativeQuery = true)
     List<Script> getByTitle (String title);
 
+    @Transactional
+    @Query(value = "SELECT * FROM SCRIPTS WHERE PROFILE_ID = ?1", nativeQuery = true)
+    List<Script> getByProfileId(Long Id);
+
+
 // ****************      MALES     ****************
     @Transactional
     @Query(value = "SELECT * FROM SCRIPTS WHERE" +
