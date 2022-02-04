@@ -1,9 +1,5 @@
 package com.codeclan.example.quill.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 
 @Entity
@@ -21,12 +17,20 @@ public class PDF {
     @OneToOne(mappedBy = "pdf")
     private Script script;
 
+//    *******************************************************
+//                       CONSTRUCTORS
+//    *******************************************************
+
     public PDF() {
     }
 
     public PDF(byte[] pdf) {
         this.pdfFile = pdf;
     }
+
+//    *******************************************************
+//                    GETTERS AND SETTERS
+//    *******************************************************
 
     public Long getId() {
         return id;

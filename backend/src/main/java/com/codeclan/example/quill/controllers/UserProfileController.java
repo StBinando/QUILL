@@ -13,9 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @RestController
 public class UserProfileController {
@@ -29,6 +28,9 @@ public class UserProfileController {
     @Autowired
     LicenseRepository licenseRepository;
 
+
+
+
     @GetMapping(value = "/userprofiles")
     public ResponseEntity<List<Profile>> getUserProfiles(){
         return new ResponseEntity<>(userProfileRepository.findAll(), HttpStatus.OK);
@@ -38,6 +40,7 @@ public class UserProfileController {
     public ResponseEntity<Optional<Profile>> getUserProfiles(@PathVariable(name = "id") Long id){
         return new ResponseEntity<>(userProfileRepository.findById(id), HttpStatus.OK);
     }
+
 
     @PutMapping (value = "/userprofiles/{id}")
     public Profile addUser(@PathVariable(name = "id") Long id,
@@ -49,9 +52,12 @@ public class UserProfileController {
         profile.setProfilepicture(profilePicture);
         profile.setId(id);
         userProfileRepository.save(profile);
-
         return profile;
     }
+
+
+
+
 
     @GetMapping(value = "/userprofile/{id}/profilepicture")
     public ResponseEntity<byte[]> getProfilePictureByUserProfileId(@PathVariable Long id) {
@@ -66,29 +72,41 @@ public class UserProfileController {
         return response;
     }
 
+//    ************** get SCRIPTS by AUTHOR ID **************
     @GetMapping(value = "/userprofile/{id}/scripts")
     public ResponseEntity<List<Script>> getScriptsByUserProfileId(@PathVariable Long id) {
-        List<Script> scriptList = scriptRepository.getByProfileId(id);
-        System.out.println(scriptList.size());
 
+        List<Script> scriptList = scriptRepository.getByProfileId(id);
+
+        List<License> licenses = new ArrayList<>();
+        scriptList.get(0).getLicenses();
+        licenses.addAll(scriptList.get(0).getLicenses());
 
         return new ResponseEntity<>(scriptList,HttpStatus.OK);
     }
 
+//    ************** get LICENSES by COMPANY ID **************
     @GetMapping(value = "/userprofile/{id}/licenses")
     public ResponseEntity<List<License>> getLicensesByUserProfileId(@PathVariable Long id){
         List<License> licenseList = licenseRepository.getByProfileId(id);
        return new ResponseEntity<>(licenseList, HttpStatus.OK);
     }
 
+//    ************** get SCRIPTS by COMPANY ID **************
     @GetMapping(value = "/userprofile/{id}/licenses/scripts")
-    public ResponseEntity<List<Script>> getScriptsByUserProfileIdAndlicense(@PathVariable Long id){
+//    public ResponseEntity<List<Script>> getScriptsByUserProfileIdAndlicense(@PathVariable Long id){
+    public ResponseEntity<HashMap<Date, Script>> getScriptsByUserProfileIdAndlicense(@PathVariable Long id){
+
         List<Script> returnList = new ArrayList<>();
         List<License> licenseList = licenseRepository.getByProfileId(id);
+        HashMap<Date, Script> results = new HashMap<>();
         for(License l : licenseList){
             returnList.add(l.getScript());
+            results.put(l.getCreationDate(), l.getScript());
         }
-        return new ResponseEntity<>(returnList, HttpStatus.OK);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+//        return new ResponseEntity<>(returnList, HttpStatus.OK);
+
     }
 
 }

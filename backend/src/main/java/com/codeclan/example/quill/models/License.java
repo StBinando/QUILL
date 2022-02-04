@@ -27,7 +27,9 @@ public class License {
     private Script script;
 
 
-//    ******************      Constructors      ******************
+//    *******************************************************
+//                       CONSTRUCTORS
+//    *******************************************************
 
     public License() {
     }
@@ -37,7 +39,9 @@ public class License {
         this.script = script;
     }
 
-    //    ******************      Getters and Setters      ******************
+//    *******************************************************
+//                   GETTERS AND SETTERS
+//    *******************************************************
     public Date getCreationDate() {
         return creationDate;
     }

@@ -1,10 +1,8 @@
 package com.codeclan.example.quill.controllers;
 
-//import com.codeclan.example.quill.models.Author;
 import com.codeclan.example.quill.models.PDF;
 import com.codeclan.example.quill.models.Script;
 import com.codeclan.example.quill.models.Profile;
-//import com.codeclan.example.quill.repositories.AuthorRepository;
 import com.codeclan.example.quill.repositories.ScriptRepository;
 import com.codeclan.example.quill.repositories.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,25 +146,11 @@ public class ScriptController {
                 pdfToSave);
 
         Profile profile = userProfileRepository.getById(id);
-//        System.out.println("author ID = " + author.getId());
-
-        script.setUserProfile(profile);
-//        script.setUploadTime(LocalDateTime.now());
-
+        script.setProfile(profile);
         scriptRepository.save(script);
-//        author.getScripts().add(script);
-
-//        System.out.println("author_id:from script "+ script.getAuthor().getId());
-//        System.out.println(author.getScripts().get(0).getTitle());
-//        System.out.println("scripts from author_id: "+ authorRepository.getById(id).getScripts().get(0).getTitle());
-
         return script.getTitle();
     }
 
-//    @GetMapping(value = "/authors/{id}/scripts")
-//    public ResponseEntity<List<Script>> getByAuthorId(@PathVariable Long id){
-//        return new ResponseEntity<>(scriptRepository.findByAuthorId(id), HttpStatus.OK);
-//    }
 
 
 

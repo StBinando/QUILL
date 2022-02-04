@@ -38,7 +38,7 @@ public class UserController {
         newProfile.setUserType(usertype);
         userProfileRepository.save(newProfile);
         User newUser = _user;
-        newUser.setUserprofile(newProfile);
+        newUser.setProfile(newProfile);
         userRepository.save(newUser);
 
         return newUser;

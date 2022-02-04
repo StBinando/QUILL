@@ -22,12 +22,23 @@ public class ProfilePicture {
     @JsonManagedReference
     private Profile profile;
 
+
+//    ***************************************************************
+//                            CONSTRUCTORS
+//    ***************************************************************
+
     public ProfilePicture() {
     }
 
     public ProfilePicture(byte[] picture) {
         this.picture = picture;
     }
+
+
+
+//    ***************************************************************
+//                         GETTERS AND SETTERS
+//    ***************************************************************
 
     public Long getId() {
         return id;
@@ -41,7 +52,7 @@ public class ProfilePicture {
         return picture;
     }
 
-    @JsonBackReference
+//    @JsonBackReference
     public void setPicture(byte[] picture) {
         this.picture = picture;
     }

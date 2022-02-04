@@ -1,11 +1,13 @@
 package com.codeclan.example.quill.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"profile"})
 public class User {
 
     @Id
@@ -71,11 +73,11 @@ public class User {
         this.email = email;
     }
 
-    public Profile getUserProfile() {
+    public Profile getProfile() {
         return profile;
     }
 
-    public void setUserprofile(Profile profile) {
+    public void setProfile(Profile profile) {
         this.profile = profile;
     }
 }

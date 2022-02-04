@@ -59,12 +59,13 @@ public class Script {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-//    @Column(name = "uploadtime")
-//    private LocalDateTime uploadTime;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="uploadtime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false)
     private Date uploadtime;
+
+//    ***************************************************************
+//                            CONSTRUCTORS
+//    ***************************************************************
 
     public Script(String title,
                   String authorname,
@@ -94,6 +95,10 @@ public class Script {
 
     public Script() {
     }
+
+//    ***************************************************************
+//                        GETTERS AND SETTERS
+//    ***************************************************************
 
     public Long getId() {
         return id;
@@ -200,11 +205,11 @@ public class Script {
     }
 
 
-    public Profile getUserProfile() {
+    public Profile getProfile() {
         return profile;
     }
 
-    public void setUserProfile(Profile profile) {
+    public void setProfile(Profile profile) {
         this.profile = profile;
     }
 
