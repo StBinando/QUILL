@@ -1,20 +1,25 @@
 import { Link, Route, Routes } from "react-router-dom";
 
-const SideBar = () => {
-    return (
-        <>
-        <h3>(sidebar - [within NavBar])</h3>
-        <Link to="profile" >profile pic</Link>
+const SideBar = (profile) => {
 
-        <p>Name</p>
-        <p>Bio</p>
-        <Link to="profile" >edit profile</Link>
-        <br/>
-        <br/>
-        <p>authors: scripts submitted --- licenses sold</p>
-        <p>companies: licenses bought</p>
-        <hr/>
-        </>
+    // console.log(profile.profile);
+
+    const scriptsNo = 2;
+    const licensesNo = 0;
+
+    return (
+        <aside className="sidebar">
+            <Link className="picture" to="profile" > </Link>
+
+            <p className="name">{profile.profile.name}</p>
+            <p className="bio">{profile.profile.bio}</p>
+            <Link className="edit" to="profile" ></Link>
+            {/* <div>
+                {profile.userType == "AUTHOR" ? <p>scripts: {scriptsNo}</p> : null}
+                <p>license: {licensesNo}</p>
+            </div> */}
+            <hr/>
+        </aside>
 
     );
   }

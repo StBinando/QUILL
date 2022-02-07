@@ -2,21 +2,51 @@ import { Link } from "react-router-dom";
 
 
 const AutLicenses = () => {
+    const licenses =[
+        {
+            "id": 1,
+            "title": "Lysistrata",
+            "company": "companyName",
+            "issued": "12-02-2021",
+            "active": true,
+            "expires": "12-02-2022"
+        },
+        {
+            "id": 1,
+            "title": "Lysistrata",
+            "company": "companyName",
+            "issued": "12-02-2021",
+            "active": true,
+            "expires": "12-02-2022"
+        }
+    ]
+
+
+
     return (
-        <>
-            <h1>Author - licenses</h1>
-            <Link to="../main">back to main</Link>
-            <br/>
-            <br/>
-            <Link to="../scripts">scripts list</Link>
+        <div className="listPage">
+            <div className="listButtons">
+                <button><Link to="../main">back to main</Link></button>
+                <button><Link to="../scripts">scripts list</Link></button>
+            </div>
 
-            <p><button>Company</button> - data - data - data - ...........</p>
-            <p><button>Company</button> - data - data - data - ...........</p>
-            <p><button>Company</button> - data - data - data - ...........</p>
-            <p><button>Company</button> - data - data - data - ...........</p>
-            <p><button>Company</button> - data - data - data - ...........</p>
+            <h2>Author - licenses</h2>
 
-        </>
+            <div className="licensesList">
+                {licenses.map((license, index) => {
+                    return (
+                            <p className="licenseLine">
+                                {license.title}
+                                <button>
+                                {license.company}
+                                </button>
+                                {license.issued}
+                                {license.active ? "ACTIVE" : "EXPIRED"}
+                                {license.expires}
+                            </p>
+                )})};
+            </div>
+        </div>
 
     );
   }

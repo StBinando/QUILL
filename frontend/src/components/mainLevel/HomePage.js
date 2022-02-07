@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
 
-const HomePage = () => {
-    return (
-        <>
-            <h1>QUILL</h1>
-            <h2>Home Page </h2>
+import QuillSaturated from "../../images/QuillSaturated.png"
+import login from "../../images/login.png"
+import newuser from "../../images/newuser.png"
 
-            <Link to="/login" >log in</Link>
-            <br/>
-            <Link to="/signup" >create new account</Link>
-        </>
+const HomePage = () => {
+
+    return (
+        <div className="main">
+            <img className="logobig" src={QuillSaturated}/>
+            <p className="slogan">...making new theatre easier...</p>
+
+            <div className="main2">
+                <Link className="icon1" to="/login" ><img src={login} height="200"/></Link>
+                <Link className="icon1" to="/signup" ><img src={newuser} height="200"/></Link>
+            </div>
+        </div>
     );
   }
   

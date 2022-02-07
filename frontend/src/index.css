@@ -5,9 +5,310 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-attachment: fixed;
+  background-image: url("./images/stage01.jpeg");
+  font-family: 'Josefin Sans', sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-weight: 500;
+  color: #f1dabf;
+  background-position:center;
 }
+
+html {
+  height: 100%
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* ============================== */
+/* ====== generic elements ====== */
+
+a{
+  font-family: 'Josefin Sans', sans-serif;
+  text-decoration: none;  
+  color: #00a00d;
+}
+
+p{
+  margin: 0;
+}
+
+.LoginFormField{
+  width:340px;
+  height: 30px;
+  font-size: 1.4em;
+  color: #381e01;
+  padding: 4px 14px;
+  margin: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+}
+
+
+.submit{
+  background-image: url("./images/submit.png");
+  width:170px;
+  height:170px
+}
+
+.back{
+  background-image: url("./images/back.png");
+  width:170px;
+  height:170px
+}
+
+.logout{
+  background-image: url("./images/logout.png");
+  width:120px;
+  height:120px
+}
+
+
+
+.submit, .back, .logout{
+  background-size:contain;
+  background-color: transparent;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  border: none;
+}
+
+
+.buttons{
+  display: flex;
+  height: 150px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 30px;
+}
+
+.navbuttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px;
+}
+
+.loginForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.message{
+  color:#e21717;
+  font-size: 2em;
+}
+/* ============================== */
+/* ============================== */
+
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  align-items: center;
+}
+
+.main2{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.logobig{
+  height: 220px;
+  margin: 60px 0 30px 0;
+}
+
+.slogan{
+  /* font-family: 'Italianno', cursive; */
+  /* font-size: 4em;
+  font-weight: 200; */
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2em;
+  font-weight: 700;
+  font-style:italic;
+  color: #fce1c4;
+  ;
+  line-height: 0.7em;
+  margin: 20px 10px;
+}
+.icon1{
+  height:200px;
+  margin: 30px;
+}
+.signupForm{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signupData{
+  display: flex;
+}
+.signupType{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 50px;
+}
+.signupTypeButtons{
+  display: flex;
+}
+
+[type=radio]{
+  display: none;
+}
+
+[type=radio] + img{
+  cursor: pointer;
+  filter: saturate(0);
+}
+img:hover{
+  /* filter: saturate(2); */
+  transform: scale(110%);
+}
+
+[type=radio]:checked + img{
+  filter: saturate(1);
+}
+
+.formfields{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.buttons{
+  width: 320px;
+  height: 150px;;
+}
+
+/* ============================== */
+
+/* .userwholepage{
+} */
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logosmall{
+  margin: 25px 50px;
+}
+
+.page {
+
+  display: flex;
+}
+
+.sidebar{
+  display:flex;
+  flex-direction: column;
+  margin-left: 20px;
+  padding: 10px;
+  background-color: #aca698bd;
+  border-radius: 10px;
+  color:#1a1300d3;
+}
+
+
+.picture{
+  border: 1px black solid;
+  border-radius: 4px;
+  background-image: url("./images/picture.png");
+  width: 200px;
+  height: 200px;
+  background-size:contain;
+  background-color: #5842047c;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  display: flex;
+  align-content: center;
+  margin: 10px;
+}
+
+.edit{
+  background-image: url("./images/edit2.png");
+  width: 100%;
+  height: 60px;
+  background-size:contain;
+  background-color: transparent;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position:right;
+  padding-right: -20px;
+}
+
+.name{
+  font-size: 1.5em;
+  line-height: 1em;
+  margin:3px 10px;
+}
+
+.bio{
+  width: 200px;
+  font-weight: 400;
+  font-style: italic;
+  margin:0 10px;;
+}
+
+
+.scriptList{
+  display:grid;
+  width:810px;
+  margin: auto;
+  padding:15px;
+  border-radius: 7px;
+  grid-template-columns: 6fr 3fr 3.5fr 1.4fr 1fr 1fr 1fr 2fr;
+  grid-template-areas:
+  "title genre language length m f n licenses";
+  background-color: #1a0d00de;
+  line-height: 2em;
+}
+
+.title{
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 7px;
+}
+
+.Lgenre, .Llanguage, .Llength, .Lm, .Lf, .Ln, .Llicenses{
+  text-align: center;
+}
+
+.iconsTop{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flexiColumn{
+  display: flex;
+  flex-direction: column;
+  Align-items: center;
+  margin-left: 20px;
+}
+
+.active{
+  filter: saturate(0);
+  cursor:auto;
+}
+
+.info{
+  width: 850px;
+  text-align: center;
 }

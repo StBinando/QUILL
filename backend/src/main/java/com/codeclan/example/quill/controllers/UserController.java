@@ -26,22 +26,17 @@ public class UserController {
     }
 
     @PostMapping(value = "/user/create/{usertype}")
-    public User addUser(@PathVariable(name = "usertype") UserType usertype,
+    public Profile addUser(@PathVariable(name = "usertype") UserType usertype,
                           @RequestBody User _user)
     throws IOException {
         Profile newProfile = new Profile();
-
-//        if (usertype == UserType.AUTHOR){
-//        } else {
-//        }
-
         newProfile.setUserType(usertype);
         userProfileRepository.save(newProfile);
         User newUser = _user;
         newUser.setProfile(newProfile);
         userRepository.save(newUser);
 
-        return newUser;
+        return newProfile;
     }
 
     @DeleteMapping(value = "/user/{id}")
@@ -50,5 +45,15 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    @GetMapping(value = "/user/validate")
+    public ResponseEntity<Profile> validateUser(@RequestParam(name = "user") String _user,
+                                                   @RequestParam(name = "pwd") String _pwd){
+        List<User> users = userRepository.validateLogin(_user,_pwd);
+        if (users.size() > 0){
+            return new ResponseEntity<>(users.get(0).getProfile(), HttpStatus.OK);
+        }
+        Profile notFound = new Profile();
+        return new ResponseEntity<>(notFound, HttpStatus.OK);
+    }
 
 }

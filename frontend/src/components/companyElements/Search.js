@@ -1,8 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import RecentScripts from "./RecentScripts";
 
-
-const Search = () => {
+function Search (onSearchSubmit) {
     return (
         <>
             <h1>Company - Search</h1>

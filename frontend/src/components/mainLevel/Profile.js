@@ -3,6 +3,7 @@ import Picture from "./Picture";
 
 
 const Profile = () => {
+
     return (
         <>
             <h1>Profile</h1>
