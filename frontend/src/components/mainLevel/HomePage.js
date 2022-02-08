@@ -9,7 +9,7 @@ const HomePage = () => {
     return (
         <div className="main">
             <img className="logobig" src={QuillSaturated}/>
-            <p className="slogan">...making new theatre easier...</p>
+            <p className="slogan">From Script to Stage</p>
 
             <div className="main2">
                 <Link className="icon1" to="/login" ><img src={login} height="200"/></Link>

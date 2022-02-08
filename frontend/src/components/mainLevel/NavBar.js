@@ -20,13 +20,15 @@ const NavBar = ({setProfile, profile}) => {
             })
             // console.log(profile);
         }
+    
 
+   
     return (
+        
         <div className="userwholepage">
             <div className="navbar">
                 <img className="logosmall" src={QuillSaturated} height="160"/>
-                {/* <p className="slogan">{profile.name}</p> */}
-                <p className="slogan">...making new theatre easier...</p>
+                <p className="slogan">From Script to Stage</p>
                 <div className="navbuttons">
                     <Link Link className="logout"to="logout" ></Link>
                 </div>

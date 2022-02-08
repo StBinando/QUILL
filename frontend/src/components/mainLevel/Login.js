@@ -31,7 +31,7 @@ function Login ({onLoginSubmit}) {
     return (
         <div className="main">
         <img className="logobig" src={QuillSaturated}/>
-        <p className="slogan">...making new theatre easier...</p>
+        <p className="slogan">From Script to Stage</p>
 
 
         <form className="loginForm">

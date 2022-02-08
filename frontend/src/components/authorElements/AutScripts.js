@@ -12,24 +12,6 @@ const AutScripts = ({setScripts, scripts}) => {
     console.log(scripts);
 
 
-    // const scripts =[
-    //     {
-    //         "id": 4,
-    //         "title": "Lysistrata",
-    //         "authorname": "Aristofane",
-    //         "genre": "comedy",
-    //         "length": 70,
-    //         "m": 4,
-    //         "f": 7,
-    //         "n": 6,
-    //         "language": "English",
-    //         "royaltyfree": true,
-    //         "description": "Women, tired of wars, decide to go on a sex strike",
-    //         "tags": "banana",
-    //         "uploadtime": "2022-02-05T20:12:30.989+00:00"
-    //     }
-    // ]
-
     useEffect( () => {
         fetchScripts();
     }, []) 

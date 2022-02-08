@@ -81,6 +81,10 @@ const handleLoginSubmit = (data) => {
             // console.log(data)
         })
     }
+
+    const handleDelete = () => {
+
+    }
     
 
 // =========   SUBMIT SCRIPT   =================
@@ -129,24 +133,8 @@ const handleLoginSubmit = (data) => {
     }
 console.log();
 
-    // const handleNewScriptSubmit = (data) => {
 
-    //     console.log("xxx");
-    //     setUser({
-    //         username: "test",
-    //         password: "test",
-    //         email: "test@ancientgreece.com"
-    //     });
-    //     console.log(user);
-    //     fetch("http://localhost:8080/user/create/AUTHOR",{method: 'POST', body: JSON.stringify(user), headers: { 'Content-Type': 'application/json' }})
-    //     // .then(response => response.json())
-    //     // .then(data => {
-    //     //     console.log(data)
-    //     //     // window.location.href = `http://localhost:3000/${data.userType}/${data.id}/main`;
-    //     // })
-    // }
-
-
+// ================= to upload PICTURE ========================
     // const handleNewScriptSubmit = (file, id) => {
 
     //     console.log("ID: " + id);
@@ -197,16 +185,14 @@ console.log();
 
             <Route path='main' element={<Author />} />
             <Route path='scripts' element={<AutScripts setScripts={setScripts} scripts={scripts}/>} />
-            <Route path='addnew' element={<NewScript
-                                            onNewScriptSubmit={handleNewScriptSubmit}
-                                            setPdftoupload={setPdftoupload} />} />
+            <Route path='addnew' element={<NewScript onNewScriptSubmit={handleNewScriptSubmit} setPdftoupload={setPdftoupload} />} />
             <Route path='licenses' element={<AutLicenses/>} />
             <Route path='script/licenses' element={<AutLicenses/>} />
             {/* <Route path='license/company' element={<p>company profile</p>} /> */}
             <Route path='script/delete' element={<p>delete script</p>} />
             <Route path='script/licenses' element={<p>edit script details</p>} />
 
-            <Route path="logout" element={<Logout />} />
+            <Route path="logout" element={<Logout setProfile={setProfile} />} />
             <Route path="delete" element={<DeleteUser />} />
 
             <Route path="*" element={<NoMatch />} />
@@ -225,7 +211,7 @@ console.log();
 
             {/* <Route path='company/script/author' element={<p>author profile</p>} /> */}
             
-            <Route path="logout" element={<Logout />} />
+            <Route path="logout" element={<Logout setProfile={setProfile} />} />
             <Route path="delete" element={<DeleteUser />} />
 
             <Route path="*" element={<NoMatch />} />

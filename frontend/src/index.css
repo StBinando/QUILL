@@ -38,6 +38,20 @@ p{
   margin: 0;
 }
 
+label{
+  color:blanchedalmond;
+}
+
+.input{
+  font-size: 1.1em;
+  height: 1.2em;
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+}
+
 .LoginFormField{
   width:340px;
   height: 30px;
@@ -174,7 +188,7 @@ p{
   filter: saturate(0);
 }
 img:hover{
-  /* filter: saturate(2); */
+  /* filter: saturate(1); */
   transform: scale(110%);
 }
 
@@ -218,7 +232,7 @@ img:hover{
   flex-direction: column;
   margin-left: 20px;
   padding: 10px;
-  background-color: #aca698bd;
+  background-color: #008cffbd;
   border-radius: 10px;
   color:#1a1300d3;
 }
@@ -311,4 +325,105 @@ img:hover{
 .info{
   width: 850px;
   text-align: center;
+}
+
+#uploadScriptForm{
+  background-color: #1a0d00de;
+  width: 810px;
+  margin: auto;
+  padding: 15px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+}
+
+.uplLine{
+  display: flex;
+}
+
+.uplForm{
+  display: flex;
+  align-items: center;
+}
+
+.uplForm > label{
+  width: 117px;
+  text-align: right;
+  padding-right: 5px;;
+}
+.cast{
+  text-align: center;
+  margin-top: 4px;
+  font-size: 1.1em;
+}
+.inputA{
+  width: 630px;
+  font-size: 1.1em;
+  height: 1.2em;
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+}
+.inputB{
+  width: 130px;
+  font-size: 1.1em;
+  height: 1.2em;
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+}
+.inputNo{
+  width: 50px;
+  font-size: 1.1em;
+  height: 1.2em;
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+  text-align: center;
+}
+.textarea{
+  /* width: 50px; */
+  font-size: 1.1em;
+  /* height: 1.2em; */
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+  /* text-align: center; */
+}
+/* .pickfile{
+  display: flex;
+  flex-direction: column;
+} */
+.uplinelast{
+  display: flex;
+  /* justify-content: space-around; */
+}
+.xxx{
+  width: 70px;
+  /* text-align: center; */
+  /* align-self:flex-end; */
+  margin-left: 55px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.1em;
+}
+.pickfile{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  height: 1.2em;
+  width: 400px;
+  margin: 30px 126px 0;
+  padding:3px 0;
+}
+#file-upload-button{
+  font-family: 'Josefin Sans', sans-serif;
+  height: 2em;
 }
