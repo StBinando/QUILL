@@ -1,5 +1,6 @@
 package com.codeclan.example.quill.repositories;
 
+import com.codeclan.example.quill.models.PDF;
 import com.codeclan.example.quill.models.Script;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -54,7 +55,11 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
     List<Script> getByTag (String tag);
 
 
-
+//    // ****************      GET PDF BY SCRIPT ID     ****************
+//    @Transactional
+////    @Query(value = "SELECT * FROM PDF WHERE ID = ?1,
+////            nativeQuery = true)
+//    List<PDF> findByScriptId (Long Id);
 
 
 // ====================================================

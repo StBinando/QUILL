@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import SideBar from "./SideBar";
 import QuillSaturated from "../../images/QuillSaturated.png"
 
-const NavBar = ({setProfile, profile}) => {
+const NavBar = ({setProfile, profile, setImage, image}) => {
     let {id} = useParams();
-    let xxx;
 
 // =====   Fetch profile, set in state   =====
         useEffect( () => {
             fetchProfile();
+            fetchImage();
         }, [])  
         
         const fetchProfile = () => {
@@ -18,8 +18,19 @@ const NavBar = ({setProfile, profile}) => {
             .then(data => {
                 setProfile(data)
             })
-            // console.log(profile);
         }
+
+        const fetchImage = () => {
+            fetch(`http://localhost:8080/userprofile/${id}/profilepicture`)
+            .then(response => {
+                if(response.ok){
+                    setImage(true);
+                } else {
+                    setImage(false);
+                }
+            })
+        }
+        
     
 
    
@@ -35,7 +46,7 @@ const NavBar = ({setProfile, profile}) => {
             </div>
 
             <div className="page">
-                <SideBar profile={profile}/>    
+                <SideBar profile={profile} image={image}/>    
                 <Outlet/>    
             </div>
 

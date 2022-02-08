@@ -1,24 +1,84 @@
-import { Link , Outlet} from "react-router-dom";
+import { Link , Outlet, useParams} from "react-router-dom";
+import React, { useState } from 'react';
+
 import Picture from "./Picture";
 
+import submit from "../../images/submit.png"
+import home from "../../images/home.png"
+import deleteprofile from "../../images/deleteprofile.png"
+import edit from "../../images/edit.png"
 
-const Profile = () => {
+
+function Profile ({onUpdateProfileSubmit, profile, onSubmitPicture}) {
+    let {id} = useParams();
+
+    const [formData, setFormData] = useState({
+        name: profile.name,
+        bio: profile.bio
+    });
+    
+    const handleChange = (event) => {
+        const newState = {...formData};
+        newState[event.target.name] = (event.target.value);
+        setFormData(newState);
+    }
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        formData.userType = profile.userType;
+        formData.profilePic = null;
+        onUpdateProfileSubmit(formData, id);
+    }
+
+
 
     return (
-        <>
-            <h1>Profile</h1>
-            <h4>form</h4>
-            <p>name</p>
-            <p>bio</p>
-            <Picture/>
-            <Link to="../main">submit</Link>
-            <br/>
-            <Link to="../main">back</Link>
-            <br/>
-            <Link to="../delete">delete account</Link>
+        <div className="flexiColumn">
+            <div className="iconsTop">
+                <Link className="home" to="../main"><img src={home} height="140"/></Link>
+                <img className="active" src={edit} height="140"/>
+                {/* <Link className="active" to="../main"><img src={edit} height="140"/></Link> */}
+                <Link className="delete" to="../delete"><img src={deleteprofile} height="140"/></Link>
+            </div>
 
-            <Outlet/>
-        </>
+            <h2 className="info">edit profile info</h2>
+
+            <div className="uploadScript">
+                <form id="updateProfileForm">
+                    <div class="updLine">
+                        <div class="updForm" id="updname">
+                            <label htmlFor="name">name</label>
+                            <input className="udpA" onChange={handleChange}
+                            name="name" id="name" type="text"
+                            value={formData.name} placeholder={profile.name} />
+                        </div>
+                    </div>
+
+                    <div class="updLine">
+                        <div className="updForm">
+                            <label htmlFor="bio">bio</label>
+                            <textarea className="textarea" onChange={handleChange}
+                            name="bio" id="bio" type="text"
+                            rows="5" cols="43"
+                            value={formData.bio} placeholder={profile.bio} />
+                        </div>
+                    </div>
+                    <div className="buttons2">
+                        <img className="confirm" onClick={handleSubmit} src={submit} width="130px"/>
+                    </div>
+                </form>
+
+                <div>
+                    <Picture profile={profile} onSubmitPicture={onSubmitPicture}/>
+
+                    <Outlet/>
+                </div>
+            </div>
+
+
+
+        </div>
 
     );
   }

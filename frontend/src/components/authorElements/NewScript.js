@@ -8,6 +8,8 @@ import home from "../../images/home.png"
 
 function NewScript ({onNewScriptSubmit}) {
     let {id} = useParams();
+    const[msg, setMsg] = useState();
+
 
     const [formData, setFormData] = useState({
         genre: '',
@@ -21,7 +23,6 @@ function NewScript ({onNewScriptSubmit}) {
     });
 
     const [selectedFile, setSelectedFile] = useState();
-    // const [selected, setSelected] = useState(false);
     
     const handleChange = (event) => {
         const newState = {...formData};
@@ -31,7 +32,6 @@ function NewScript ({onNewScriptSubmit}) {
 
     const handleChangeFile = (event) => {
 		setSelectedFile(event.target.files[0]);
-		// setSelected(true);
 	};
 
     const handleSubmit = (event) => {
@@ -49,81 +49,104 @@ function NewScript ({onNewScriptSubmit}) {
                 <Link className="home" to="../main"><img src={home} height="180"/></Link>
                 <Link className="active" to="../addnew"><img src={sendscript} height="180"/></Link>
                 <Link className="scripts" to="../scripts"><img src={allscripts} height="180"/></Link>
-                <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
+                <img onClick={()=>setMsg("under construction")} src={licenses} height="180"/>
             </div>
+            
+                <h3 className="message">{msg}</h3>
+
 
             <h2 className="info">upload new script</h2>
 
             <div className="uploadScript">
 
-            <form id="uploadScriptForm">
-                <div class="uplLine">
-                    <div class="uplForm" id="upltitle">
-                        <label htmlFor="title">title</label>
-                        <input className="inputA" onChange={handleChange}
-                        name="title" id="title" type="text"
-                        value={formData.title} placeholder="enter title" />
+                <form id="uploadScriptForm">
+                    <div class="uplLine">
+                        <div class="uplForm" id="upltitle">
+                            <label htmlFor="title">title</label>
+                            <input className="inputA" onChange={handleChange}
+                            name="title" id="title" type="text"
+                            value={formData.title} placeholder="enter title" />
+                        </div>
                     </div>
-                </div>
 
-                <div class="uplLine">
-                    <div className="uplForm">
-                        <label htmlFor="genre">genre</label>
-                        <input className="inputB" onChange={handleChange}
-                        name="genre" id="genre" type="text"
-                        value={formData.genre} placeholder="enter genre" />
-                    </div>
-                    <div className="uplForm">
-                        <label htmlFor="language">language</label>
-                        <input className="inputB" onChange={handleChange}
-                        name="language" id="language" type="text"
-                        value={formData.language} placeholder="enter language" />
-                    </div>
-                    <div className="uplForm">
-                        <label htmlFor="length">lenght</label>
-                        <input className="inputNo" onChange={handleChange}
-                        name="length" id="length" type="number"
-                        value={formData.m} placeholder="0" />
-                    </div>
-                </div>
-                <p class="cast">cast / characters</p>
-                <div class="uplLine">
-                    <div className="uplForm">
-                        <label htmlFor="m">males</label>
-                        <input className="inputNo" onChange={handleChange}
-                        name="m" id="m" type="number"
-                        value={formData.m} placeholder="0" />
-                    </div>
-                    <div className="uplForm">
-                        <label htmlFor="f">females</label>
-                        <input className="inputNo" onChange={handleChange}
-                        name="f" id="f" type="number"
-                        value={formData.f} placeholder="0" />
-                    </div>
-                    <div className="uplForm">
-                        <label htmlFor="n">neutral</label>
-                        <input className="inputNo" onChange={handleChange}
-                        name="n" id="n" type="number"
-                        value={formData.n} placeholder="0" />
-                    </div>
-                </div>
+                    <div class="uplLine">
 
-                <div class="uplLine">
-                    <div className="uplForm">
-                        <label htmlFor="description">description</label>
-                        <textarea className="textarea" onChange={handleChange}
-                        name="description" id="description" type="text"
-                        rows="5" cols="44"
-                        value={formData.description} placeholder="enter description" />
+
+                        <div className="uplForm">
+                            <label htmlFor="genre">genre</label>
+                            <select id="genre" className="inputB" onChange={handleChange}
+                            name="genre" id="genre" type="text"
+                            value={formData.genre} placeholder="enter genre">
+                                <option value="comedy">comedy</option>
+                                <option value="tragedy">tragedy</option>
+                                <option value="drama">drama</option>
+                                <option value="absurd">absurd</option>
+                                <option value="musical">musical</option>
+                                <option value="experimantal">experimantal</option>
+                            </select>
+                        </div>
+
+
+                        <div className="uplForm">
+                            <label htmlFor="language">language</label>
+                            <select id="language" className="inputB" onChange={handleChange}
+                            name="language" id="language" type="text"
+                            value={formData.language} placeholder="language">
+                                <option value="English">English</option>
+                                <option value="French">French</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="Portuguese">Portuguese</option>
+                                <option value="German">German</option>
+                                <option value="Polish">Polish</option>
+                            </select>
+                        </div>
+
+                        <div className="uplForm">
+                            <label htmlFor="length">lenght</label>
+                            <input className="inputNo" onChange={handleChange}
+                            name="length" id="length" type="number"
+                            value={formData.m} placeholder="0" />
+                        </div>
                     </div>
-                </div>
+                    <p class="cast">cast / characters</p>
+                    <div class="uplLine">
+                        <div className="uplForm">
+                            <label htmlFor="m">males</label>
+                            <input className="inputNo" onChange={handleChange}
+                            name="m" id="m" type="number"
+                            value={formData.m} placeholder="0" />
+                        </div>
+                        <div className="uplForm">
+                            <label htmlFor="f">females</label>
+                            <input className="inputNo" onChange={handleChange}
+                            name="f" id="f" type="number"
+                            value={formData.f} placeholder="0" />
+                        </div>
+                        <div className="uplForm">
+                            <label htmlFor="n">neutral</label>
+                            <input className="inputNo" onChange={handleChange}
+                            name="n" id="n" type="number"
+                            value={formData.n} placeholder="0" />
+                        </div>
+                    </div>
 
-                <div class="uplLinelastheigh">
-                    <input class="pickfile" type="file" name="file" onChange={handleChangeFile} />
-                    <input class="xxx" onClick={handleSubmit} type="submit" value="upload" />
-                </div>
+                    <div class="uplLine">
+                        <div className="uplForm">
+                            <label htmlFor="description">description</label>
+                            <textarea className="textarea" onChange={handleChange}
+                            name="description" id="description" type="text"
+                            rows="5" cols="75"
+                            value={formData.description} placeholder="enter description" />
+                        </div>
+                    </div>
 
-            </form>
+                    <div class="uplLinelastheigh">
+                        <input class="pickfile" type="file" name="file" onChange={handleChangeFile} />
+                        <input class="submitfile" onClick={handleSubmit} type="submit" value="upload" />
+                    </div>
+
+                </form>
             </div>
 
         </div>

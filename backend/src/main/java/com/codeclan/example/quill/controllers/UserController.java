@@ -31,6 +31,8 @@ public class UserController {
     throws IOException {
         Profile newProfile = new Profile();
         newProfile.setUserType(usertype);
+        newProfile.setName("your name");
+        newProfile.setBio("your bio");
         userProfileRepository.save(newProfile);
         User newUser = _user;
         newUser.setProfile(newProfile);

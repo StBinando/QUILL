@@ -1,28 +1,22 @@
 import { Link } from "react-router-dom";
 
 import logout from "../../images/logout.png"
-import confirm from "../../images/delete.png"
+import confirm from "../../images/confirm.png"
 import cancel from "../../images/cancel.png"
 
 
-const Logout = ({setProfile}) => {
+const Logout = () => {
 
     const handleConfirm = () => {
-        setProfile({
-            id: "",
-            name: "",
-            bio: "",
-            userType: ""
-        })
         window.location.href = `http://localhost:3000`;
 
     }
     return (
         <div className="flexiColumn">
 
-            <img className="logout" src={logout} width="520px" height="520px"/>
+            <img src={logout} width="520px" height="230px" width="230"/>
 
-            <h2 className="msg">do you confirm you want to log out?</h2>
+            <h2 className="info3">do you confirm you want to log out?</h2>
 
             <div className="buttons">
                 {/* <button className="confirm" onClick={handleConfirm} type="submit" value=""> */}

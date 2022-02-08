@@ -50,19 +50,7 @@ function Signup ({onSignupSubmit}) {
             <h2 className="message">{msg}</h2>
 
             <div className="signupData">
-                <div className="signupType">
-                    <h2>select type of account</h2>
-                    <div className="signupTypeButtons">
-                        <label className="userType">
-                            <input type="radio" id="userType1" name="userType" value="AUTHOR" onChange={handleChange}/>   
-                            <img className="authorType" src={authorimg} height="160px"/>
-                        </label>
-                        <label className="userType">
-                        <input type="radio" id="userType2" name="userType" value="COMPANY" onChange={handleChange}/>
-                            <img className="companyType" src={companyimg} height="160px"/>
-                        </label>
-                    </div>
-                </div>
+                
                 <div className="formfields">
                     <div>
                         <input className="LoginFormField"
@@ -102,6 +90,20 @@ function Signup ({onSignupSubmit}) {
                         type="password"
                         value={formData.password2}
                         placeholder="re-type password"/>
+                    </div>
+                </div>
+
+                <div className="signupType">
+                    <h2>select type of account</h2>
+                    <div className="signupTypeButtons">
+                        <label className="userType">
+                            <input type="radio" id="userType1" name="userType" value="AUTHOR" onChange={handleChange}/>   
+                            <img className="authorType" src={authorimg} height="160px"/>
+                        </label>
+                        <label className="userType">
+                        <input type="radio" id="userType2" name="userType" value="COMPANY" onChange={handleChange}/>
+                            <img className="companyType" src={companyimg} height="160px"/>
+                        </label>
                     </div>
                 </div>
 

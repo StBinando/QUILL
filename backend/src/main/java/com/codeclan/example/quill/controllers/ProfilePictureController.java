@@ -79,4 +79,17 @@ public class ProfilePictureController {
         ResponseEntity<byte[]> response = new ResponseEntity<>(profilePicture.get().getPicture(),headers, HttpStatus.OK);
         return response;
     }
+
+    @GetMapping(value = "/userprofile/{id}/picture")
+    public ResponseEntity<byte[]> getProfilePictureByProfileId(@PathVariable Long id) {
+        Optional<Profile> profile = userProfileRepository.findById(id);
+        Optional<ProfilePicture> profilePicture = profilePictureRepository.findById(profile.get().getId());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        headers.setContentDispositionFormData("output.jpg","output.jpg");
+        headers.setCacheControl("must-revalidate, post-check=0,pre-check=0");
+        ResponseEntity<byte[]> response = new ResponseEntity<>(profilePicture.get().getPicture(),headers, HttpStatus.OK);
+        return response;
+    }
 }

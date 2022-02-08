@@ -9,8 +9,6 @@ import home from "../../images/home.png"
 
 const AutScripts = ({setScripts, scripts}) => {
     let {id} = useParams();
-    console.log(scripts);
-
 
     useEffect( () => {
         fetchScripts();
@@ -38,6 +36,8 @@ const AutScripts = ({setScripts, scripts}) => {
                 <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
             </div>
             <h2 className="info">Scripts submitted</h2>
+            {!scripts.length && <h2 className="message">you haven't submitted any script yet</h2>}
+            {scripts.length && 
             <div className="scriptList">
                 <p className="listtitle title">title</p>
                 <p className="listgenre title">genre</p>
@@ -47,20 +47,20 @@ const AutScripts = ({setScripts, scripts}) => {
                 <p className="listf title">F</p>
                 <p className="listn title">N</p>
                 <p className="listlicenses title">licen.</p>
-                {scripts.map((script, index) => {
-                    return (
-                        <>
-                            <p className="Ltitle">{script.title}</p>
-                            <p className="Lgenre">{script.genre}</p>
-                            <p className="Llanguage">{script.language}</p>
-                            <p className="Llength">{script.length}</p>
-                            <p className="Lm">{script.m}</p>
-                            <p className="Lf">{script.f}</p>
-                            <p className="Ln">{script.n}</p>
-                            <Link className="Llicenses" to="../script/licenses">licenses</Link>
-                        </>
-                )})}
+                {scripts.map((script, index) => (
+                    <>
+                        <a href={`http://localhost:8080/scripts/pdf/${script.id}`} >{script.title}</a>
+                        <p className="Lgenre">{script.genre}</p>
+                        <p className="Llanguage">{script.language}</p>
+                        <p className="Llength">{script.length}</p>
+                        <p className="Lm">{script.m}</p>
+                        <p className="Lf">{script.f}</p>
+                        <p className="Ln">{script.n}</p>
+                        <Link className="Llicenses" to="../script/licenses">licenses</Link>
+                    </>
+                ))}
             </div>
+        }
         </div>
     )
   }

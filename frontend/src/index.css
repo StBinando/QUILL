@@ -188,8 +188,8 @@ label{
   filter: saturate(0);
 }
 img:hover{
-  /* filter: saturate(1); */
-  transform: scale(110%);
+  filter: saturate(1);
+  transform: scale(120%);
 }
 
 [type=radio]:checked + img{
@@ -232,7 +232,7 @@ img:hover{
   flex-direction: column;
   margin-left: 20px;
   padding: 10px;
-  background-color: #008cffbd;
+  background-color: #016888c4;
   border-radius: 10px;
   color:#1a1300d3;
 }
@@ -389,28 +389,19 @@ img:hover{
   text-align: center;
 }
 .textarea{
-  /* width: 50px; */
   font-size: 1.1em;
-  /* height: 1.2em; */
   color: #381e01;
   padding: 2px 14px;
   margin: 3px;
   font-family: 'Josefin Sans', sans-serif;
   border-radius: 7px;
-  /* text-align: center; */
 }
-/* .pickfile{
-  display: flex;
-  flex-direction: column;
-} */
+
 .uplinelast{
   display: flex;
-  /* justify-content: space-around; */
 }
-.xxx{
+.submitfile{
   width: 70px;
-  /* text-align: center; */
-  /* align-self:flex-end; */
   margin-left: 55px;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.1em;
@@ -426,4 +417,64 @@ img:hover{
 #file-upload-button{
   font-family: 'Josefin Sans', sans-serif;
   height: 2em;
+}
+
+.udpA{
+  width: 366px;
+  font-size: 1.1em;
+  height: 1.2em;
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+}
+
+.updForm > label{
+  width: 50px;
+  text-align: right;
+  padding-right: 5px;;
+}
+
+#updateProfileForm{
+  background-color: #016888c4;
+  /* background-color: #1a0d00de; */
+  width: 460px;
+  margin: auto;
+  padding: 15px 15px 0 15px;;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+}
+
+.updLine{
+  display: flex;
+}
+
+.name.updA{
+  width: 100px;
+}
+
+.updForm{
+  display: flex;
+  align-items: center;
+}
+.buttons2{
+  display: flex;
+  height: 150px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 30px; 
+  margin: auto;
+}
+.info3{
+  width: 850px;
+  text-align: center;
+  margin: 0;
+}
+
+.uploadScript{
+  display: flex;
+  margin: 0 5px;
 }

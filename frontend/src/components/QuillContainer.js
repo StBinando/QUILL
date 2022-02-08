@@ -37,7 +37,8 @@ const [profile, setProfile] = useState(
         id: "",
         name: "",
         userType: "",
-        bio: ""
+        bio: "",
+        profilePic: null
     });
     const [user, setUser] = useState({
             username: "",
@@ -48,12 +49,11 @@ const [profile, setProfile] = useState(
     // const [search, setSearch] = useState();
     // const [path, setPath] = useState();
     const [dpftoupload, setPdftoupload] = useState(null);
+    const [image, setImage] = useState();
 
 // =============      END     =================
 // =============    STATES    =================
     
-
-
 
 
 // =============    LOGIN     =================
@@ -74,7 +74,7 @@ const handleLoginSubmit = (data) => {
             email: data.email
         });
         // console.log(user);
-        fetch("http://localhost:8080/user/create/"+data.userType,{method: 'POST', body: JSON.stringify(user), headers: { 'Content-Type': 'application/json' }})
+        fetch("http://localhost:8080/user/create/"+data.userType,{method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then(data => {
             window.location.href = `http://localhost:3000/${data.userType}/${data.id}/main`;
@@ -82,81 +82,80 @@ const handleLoginSubmit = (data) => {
         })
     }
 
+// =============    DELETE PROFILE     =================
     const handleDelete = () => {
 
+    }
+
+// =============    UPDATE PROFILE     =================
+    const handleUdpateProfile = (data, id) => {
+        setProfile(data);
+        // http://localhost:8080/userprofiles/1
+        fetch("http://localhost:8080/userprofiles/"+id,{
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }})
+        .then(response => response.json())
+        .then(data => {console.log(profile)})
     }
     
 
 // =========   SUBMIT SCRIPT   =================
 
-    const handleNewScriptSubmit = (data, file, id) => {
-        formData.append("profilepicture", file);
-        
-    //     // const fromForm = {
-    //     //     title: data.title,
-    //     //     authorname: "",
-    //     //     genre: data.genre.toUpperCase(),
-    //     //     length: data.length,
-    //     //     m: data.m,
-    //     //     f: data.f,
-    //     //     n: data.n,
-    //     //     language: data.language,
-    //     //     description: data.description
-    //     // };
+    const handleNewScriptSubmit = (_data, file, id) => {
+        formData.append("pdf", file);
 
-        // console.log("xxx");
         fetch(
-			"http://localhost:8080/author/"+id +
-            "/script/add?title="+data.title +
+			"http://localhost:8080/author/"+id +"/script/add" +
+            "?title="+_data.title +
             "&authorname=" + profile.name +
-            "&genre=" + data.genre.toUpperCase() +
-            "&length=" + data.length +
-            "&m=" + data.m + 
-            "&f=" + data.f +
-            "&n=" + data.n +
-            "&language=" + data.language+
+            "&genre=" + _data.genre.toUpperCase() +
+            "&length=" + _data.length +
+            "&m=" + _data.m + 
+            "&f=" + _data.f +
+            "&n=" + _data.n +
+            "&language=" + _data.language+
             "&royaltyfree=false" +
-            "&description="+ data.description +
+            "&description="+ _data.description +
             "&tags=banana",
 			{
-				mmethod: 'POST',
+				method: 'POST',
 				body: formData,
                 // mode: 'no-cors',
-                headers: { 'Content-Type': 'multipart/form-data' }
+                // headers: { 'Content-Type': 'multipart/form-data' }
+			}
+		)
+        .then(response => response.json())
+        .then(data => {
+            // window.location.href = `http://localhost:3000/${profile.userType}/${profile.id}/scripts`;
+        })
+        console.log(profile.userType);
+        const path = `http://localhost:3000/${profile.userType}/${profile.id}/scripts`;
+        console.log(path);
+        window.location.href = path;
+    }
+
+
+// ================= to upload PICTURE ========================
+    const handleSubmitPicture = (file, id) => {
+
+        console.log("ID: " + id);
+        formData.append("profilepicture", file);
+        fetch("http://localhost:8080/userprofile/"+id+"/profilepicture/add",
+			{
+				method: 'PUT',
+				body: formData,
+                // mode: 'no-cors',
+                // headers: { 'Content-Type': 'multipart/form-data' }
 			}
 		)
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            // window.location.href = `http://localhost:3000/${data.userType}/${data.id}/main`;
         })
+        window.location.href = `http://localhost:3000/${profile.userType}/${profile.id}/profile`;
     }
-console.log();
 
-
-// ================= to upload PICTURE ========================
-    // const handleNewScriptSubmit = (file, id) => {
-
-    //     console.log("ID: " + id);
-    //     formData.append("profilepicture", file);
-    //     fetch("http://localhost:8080/userprofile/"+id+"/profilepicture/add",
-	// 		{
-	// 			method: 'POST',
-	// 			body: formData,
-    //             // mode: 'no-cors',
-    //             // headers: { 'Content-Type': 'multipart/form-data' }
-	// 		}
-	// 	)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         // window.location.href = `http://localhost:3000/${data.userType}/${data.id}/main`;
-    //     })
-    // }
-
-
-
-    
 
 
 
@@ -178,22 +177,26 @@ console.log();
           {/* <Route path='login' element={<Login onLoginSubmit={handleLoginSubmit} msg={msg}/>} /> */}
 
 {/* ================            AUTHOR             ============== */}
-          <Route path='author/:id/*' element={<NavBar setProfile={setProfile} profile={profile}/>}>
+          <Route path='author/:id/*' element={<NavBar setProfile={setProfile} profile={profile} setImage={setImage} image={image}/>}>
 
-            <Route path='profile' element={<Profile />} />
-            <Route path='profilepic' element={<Picture />} />
+            <Route path='profile' element={<Profile
+                onUpdateProfileSubmit={handleUdpateProfile}
+                profile={profile}
+                onSubmitPicture={handleSubmitPicture}/>} />
 
             <Route path='main' element={<Author />} />
             <Route path='scripts' element={<AutScripts setScripts={setScripts} scripts={scripts}/>} />
-            <Route path='addnew' element={<NewScript onNewScriptSubmit={handleNewScriptSubmit} setPdftoupload={setPdftoupload} />} />
+            <Route path='addnew' element={<NewScript 
+                onNewScriptSubmit={handleNewScriptSubmit}
+                setPdftoupload={setPdftoupload} />} />
             <Route path='licenses' element={<AutLicenses/>} />
             <Route path='script/licenses' element={<AutLicenses/>} />
             {/* <Route path='license/company' element={<p>company profile</p>} /> */}
             <Route path='script/delete' element={<p>delete script</p>} />
             <Route path='script/licenses' element={<p>edit script details</p>} />
 
-            <Route path="logout" element={<Logout setProfile={setProfile} />} />
-            <Route path="delete" element={<DeleteUser />} />
+            <Route path="logout" element={<Logout />} />
+            <Route path="delete" element={<DeleteUser profile={profile}/>} />
 
             <Route path="*" element={<NoMatch />} />
           </Route>

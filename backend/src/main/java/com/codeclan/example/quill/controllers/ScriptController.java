@@ -1,6 +1,7 @@
 package com.codeclan.example.quill.controllers;
 
 import com.codeclan.example.quill.models.PDF;
+
 import com.codeclan.example.quill.models.Script;
 import com.codeclan.example.quill.models.Profile;
 import com.codeclan.example.quill.repositories.ScriptRepository;
@@ -153,7 +154,6 @@ public class ScriptController {
 
 
 
-
 // ====================================================
 // ======               GET PDF                 =======
 // ====================================================
@@ -161,19 +161,29 @@ public class ScriptController {
     @GetMapping(value = "/scripts/pdf/{id}")
     public ResponseEntity<byte[]> getScript(@PathVariable Long id) {
         Optional<Script> scriptsData = scriptRepository.findById(id);
-
-
-        System.out.println(System.getProperty("user.dir"));  // print working directory on console
-
+//        System.out.println(System.getProperty("user.dir"));
+//        System.out.println(scriptsData.get().getTitle());// print working directory on console
+        String name = scriptsData.get().getTitle()+".pdf";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDispositionFormData("output.pdf","output.pdf");
+        headers.setContentDispositionFormData(name,name);
         headers.setCacheControl("must-revalidate, post-check=0,pre-check=0");
         ResponseEntity<byte[]> response = new ResponseEntity<>(scriptsData.get().getPdfRecord().getPdfFile(),headers, HttpStatus.OK);
         return response;
     }
 
-
+//    @GetMapping(value = "/scripts/pdf2/{id}")
+//    public ResponseEntity<byte[]> getByScriptId(@PathVariable Long id) {
+//        PDF scriptsData = scriptRepository.findByScriptId(id).get(0);
+//
+//        System.out.println(System.getProperty("user.dir"));  // print working directory on console
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_PDF);
+//        headers.setContentDispositionFormData("output.pdf","output.pdf");
+//        headers.setCacheControl("must-revalidate, post-check=0,pre-check=0");
+//        ResponseEntity<byte[]> response = new ResponseEntity<>(scriptsData.getPdfFile(),headers, HttpStatus.OK);
+//        return response;
+//    }
 
 
 // ====================================================
