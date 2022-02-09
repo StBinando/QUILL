@@ -21,13 +21,13 @@ function Picture({profile, onSubmitPicture}){
 
     return (
         <div className="uploadScript">
-                <form id="updateProfileForm">
+                <form id="updatePictureForm">
                     <div class="uplLinelastheigh">
-                        <input class="pickfile" type="file" name="file" onChange={handleChangeFile} />
+                        <input class="pickfileimg" type="file" name="file" onChange={handleChangeFile} />
+                    </div>
                         <div className="buttons2">
                             <img className="confirm" onClick={handleSubmit} src={submit} width="130px"/>
                         </div>
-                    </div>
                 </form>
 
             </div>

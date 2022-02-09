@@ -15,7 +15,6 @@ function Author () {
                 <Link className="active" to="../main"><img src={home} height="180"/></Link>
                 <Link className="sendscript" to="../addnew"><img src={sendscript} height="180"/></Link>
                 <Link className="scripts" to="../scripts"><img src={allscripts} height="180"/></Link>
-                {/* <img onClick={()=>setMsg("under construction")} src={licenses} height="180"/> */}
                 <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
                 <h3 className="message">{msg}</h3>
             </div>

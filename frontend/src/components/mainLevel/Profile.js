@@ -1,5 +1,5 @@
 import { Link , Outlet, useParams} from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Picture from "./Picture";
 
@@ -7,6 +7,7 @@ import submit from "../../images/submit.png"
 import home from "../../images/home.png"
 import deleteprofile from "../../images/deleteprofile.png"
 import edit from "../../images/edit.png"
+
 
 
 function Profile ({onUpdateProfileSubmit, profile, onSubmitPicture}) {
@@ -22,12 +23,18 @@ function Profile ({onUpdateProfileSubmit, profile, onSubmitPicture}) {
         newState[event.target.name] = (event.target.value);
         setFormData(newState);
     }
-
+    useEffect(() => {
+        setFormData({
+            name: profile.name,
+            bio: profile.bio
+        })
+    }, [profile])
 
     const handleSubmit = (event) => {
         event.preventDefault();
         formData.userType = profile.userType;
-        formData.profilePic = null;
+        formData.id = profile.id;
+        // formData.profilePic = null;
         onUpdateProfileSubmit(formData, id);
     }
 
@@ -37,14 +44,16 @@ function Profile ({onUpdateProfileSubmit, profile, onSubmitPicture}) {
         <div className="flexiColumn">
             <div className="iconsTop">
                 <Link className="home" to="../main"><img src={home} height="140"/></Link>
+                <p className="spacer"> </p>
                 <img className="active" src={edit} height="140"/>
+                <p className="spacer"> </p>
                 {/* <Link className="active" to="../main"><img src={edit} height="140"/></Link> */}
                 <Link className="delete" to="../delete"><img src={deleteprofile} height="140"/></Link>
             </div>
 
             <h2 className="info">edit profile info</h2>
 
-            <div className="uploadScript">
+            <div className="udpateprofile">
                 <form id="updateProfileForm">
                     <div class="updLine">
                         <div class="updForm" id="updname">

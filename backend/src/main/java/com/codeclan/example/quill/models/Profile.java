@@ -23,7 +23,7 @@ public class Profile {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "bio")
+    @Column(name = "bio", length = 10000)
     private String bio;
 
     @Column(name = "user_type")

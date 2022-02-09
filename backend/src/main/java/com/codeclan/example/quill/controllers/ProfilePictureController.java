@@ -57,6 +57,7 @@ public class ProfilePictureController {
             throws IOException {
         ProfilePicture picToSave = new ProfilePicture();
         picToSave.setPicture(pic.getBytes());
+        picToSave.setId((id));
         Optional<Profile> userProfile = userProfileRepository.findById(id);
         userProfile.get().setProfilepicture(picToSave);
         profilePictureRepository.save(picToSave);

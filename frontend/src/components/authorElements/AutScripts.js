@@ -15,7 +15,6 @@ const AutScripts = ({setScripts, scripts}) => {
     }, []) 
 
     useEffect(() => {
-
     }, [scripts])
 
     const fetchScripts = () => {

@@ -22,6 +22,8 @@ function NewScript ({onNewScriptSubmit}) {
         description: '',
     });
 
+
+
     const [selectedFile, setSelectedFile] = useState();
     
     const handleChange = (event) => {
@@ -36,10 +38,22 @@ function NewScript ({onNewScriptSubmit}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // onNewScriptSubmit(formData);    // to test create NEW USER
-        // onNewScriptSubmit(selectedFile, id);    // to test upload picture
-        onNewScriptSubmit(formData, selectedFile, id);
+        if(formData.genre != ""
+        & formData.title != ""
+        & formData.language != ""
+        & formData.m != ""
+        & formData.f != ""
+        & formData.n != ""
+        & formData.description != ""
+        & typeof selectedFile != "undefined"){
+            if(formData.password == formData.password2){
+                onNewScriptSubmit(formData, selectedFile, id);
+            }else{
+                setMsg("password doesn't match");
+            }
+        } else {
+            setMsg("all fields and PDF file are mandatory");
+        }
     }
 
 
@@ -49,7 +63,7 @@ function NewScript ({onNewScriptSubmit}) {
                 <Link className="home" to="../main"><img src={home} height="180"/></Link>
                 <Link className="active" to="../addnew"><img src={sendscript} height="180"/></Link>
                 <Link className="scripts" to="../scripts"><img src={allscripts} height="180"/></Link>
-                <img onClick={()=>setMsg("under construction")} src={licenses} height="180"/>
+                <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
             </div>
             
                 <h3 className="message">{msg}</h3>
@@ -76,7 +90,8 @@ function NewScript ({onNewScriptSubmit}) {
                             <label htmlFor="genre">genre</label>
                             <select id="genre" className="inputB" onChange={handleChange}
                             name="genre" id="genre" type="text"
-                            value={formData.genre} placeholder="enter genre">
+                            value={formData.genre}>
+                                <option value="" disabled>genre</option>
                                 <option value="comedy">comedy</option>
                                 <option value="tragedy">tragedy</option>
                                 <option value="drama">drama</option>
@@ -91,7 +106,8 @@ function NewScript ({onNewScriptSubmit}) {
                             <label htmlFor="language">language</label>
                             <select id="language" className="inputB" onChange={handleChange}
                             name="language" id="language" type="text"
-                            value={formData.language} placeholder="language">
+                            value={formData.language}>
+                                <option value="" disabled>language</option>
                                 <option value="English">English</option>
                                 <option value="French">French</option>
                                 <option value="Italian">Italian</option>
@@ -102,12 +118,19 @@ function NewScript ({onNewScriptSubmit}) {
                             </select>
                         </div>
 
+
+                        
+
                         <div className="uplForm">
-                            <label htmlFor="length">lenght</label>
+                            <label htmlFor="length">approx. lenght (minutes)</label>
                             <input className="inputNo" onChange={handleChange}
                             name="length" id="length" type="number"
-                            value={formData.m} placeholder="0" />
+                            value={formData.length} />
                         </div>
+
+
+
+
                     </div>
                     <p class="cast">cast / characters</p>
                     <div class="uplLine">
