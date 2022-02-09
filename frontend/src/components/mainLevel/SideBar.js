@@ -1,16 +1,15 @@
 import { Link, Route, Routes } from "react-router-dom";
 
-const SideBar = ({profile, image}) => {
+import edit2 from "../../images/edit2.png";
+import picture from "../../images/picture.png";
 
-    // console.log(profile.profile);
+
+const SideBar = ({profile, image}) => {
 
     const scriptsNo = 2;
     const licensesNo = 0;
 
-    // const img_path = `http://localhost:8080/userprofile/${profile.profile.id}/profilepicture`;
-    // console.log("image exists? :")
     console.log("image exists? :"+image)
-    // console.log("image exists? :"+image.image==false)
 
     return (
         <div>
@@ -20,16 +19,13 @@ const SideBar = ({profile, image}) => {
                     <img className="profilePic"
                         src={`http://localhost:8080/userprofile/${profile.id}/profilepicture`} height="202" width="202"/>
                     }
+                    {!image && <img src={picture} height="202" width="202"/>
+                    }
                 </Link>
 
                 <p className="name">{profile.name}</p>
                 <p className="bio">{profile.bio}</p>
-                <Link className="edit" to="profile" ></Link>
-                {/* <div>
-                    {profile.userType == "AUTHOR" ? <p>scripts: {scriptsNo}</p> : null}
-                    <p>license: {licensesNo}</p>
-                </div> */}
-                <hr/>
+                <Link className="edit" to="profile" ><img src={edit2} height="100"/></Link>
             </aside>
         </div>
 

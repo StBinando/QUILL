@@ -54,7 +54,7 @@ function Profile ({onUpdateProfileSubmit, profile, onSubmitPicture}) {
             <h2 className="info">edit profile info</h2>
 
             <div className="udpateprofile">
-                <form id="updateProfileForm">
+            <form id={profile.userType=="AUTHOR" ? "updateProfileFormA" : "updateProfileFormC"}>
                     <div class="updLine">
                         <div class="updForm" id="updname">
                             <label htmlFor="name">name</label>

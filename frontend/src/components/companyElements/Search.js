@@ -9,6 +9,8 @@ import licenses from "../../images/licenses.png"
 import home from "../../images/home.png"
 import reset from "../../images/reset.png"
 import submit from "../../images/submit.png"
+import back from "../../images/back.png"
+
 
 function Search ({onSearchSubmit, pathResults, setResults, results}) {
     let {id} = useParams();
@@ -86,7 +88,6 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
 
 
                 <h2 className="info">search scripts</h2>
-                <img onClick={refreshPage} src={reset} height="90"/>
 
                 <div className="searchscripts">
 
@@ -228,7 +229,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                         </div>
 
                         <div class="searchline2">
-                            <div>
+                            <div className="RFall">
                                 <label htmlFor="royaltyfree">royalty free only?</label>
                                 <select id="royaltyfree" className="RF" onChange={handleChange}
                                 name="royaltyfree" id="royaltyfree" type="royaltyfree"
@@ -237,11 +238,14 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                                     <option value="true">yes</option>
                                 </select>
                             </div>
+                            <p className="spacer"></p>
+                            <p className="spacer"></p>
+                            <p className="spacer"></p>
+                            <p className="spacer"></p>
                             <img onClick={handleSubmit} src={submit} height="70"/>
-                            {/* <input class="submitfile" onClick={handleSubmit} type="submit" value="SEARCH" /> */}
+                            <img onClick={refreshPage} src={reset} height="70"/>
+                            <p className="spacer"></p>
                         </div>
-                        {/* <div class="searchline"> */}
-                        {/* </div> */}
                     </form>
                 </div>
 
@@ -272,8 +276,11 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                         <h3 className="message">{msg}</h3>
                     </div>
                 </div>
-                    
-                <h2 className="info">RESULTS: {results.length}</h2>
+                
+                <div className="info marginbutton">
+                    <h2 >results: {results.length} script(s)</h2>
+                    <img onClick={()=>{setShowResults(false)}} src={back} height="70"/>
+                </div>
                 {!results.length && <h2 className="message">there are no scripts matching your search</h2>}
                 {results.length && 
                     <div className="resultsList">

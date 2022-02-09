@@ -2,6 +2,7 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import SideBar from "./SideBar";
 import QuillSaturated from "../../images/QuillSaturated.png"
+import logout from "../../images/logout.png"
 
 const NavBar = ({setProfile, profile, setImage, image}) => {
     let {id} = useParams();
@@ -41,7 +42,7 @@ const NavBar = ({setProfile, profile, setImage, image}) => {
                 <img className="logosmall" src={QuillSaturated} height="160"/>
                 <p className="slogan">From Script to Stage</p>
                 <div className="navbuttons">
-                    <Link Link className="logout"to="logout" ></Link>
+                    <Link Link className="logout"to="logout" ><img src={logout} height="140"/></Link>
                 </div>
             </div>
 

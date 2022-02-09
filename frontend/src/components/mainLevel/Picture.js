@@ -21,7 +21,7 @@ function Picture({profile, onSubmitPicture}){
 
     return (
         <div className="uploadScript">
-                <form id="updatePictureForm">
+                <form id={profile.userType=="AUTHOR" ? "updatePictureFormA" : "updatePictureFormC"}>
                     <div class="uplLinelastheigh">
                         <input class="pickfileimg" type="file" name="file" onChange={handleChangeFile} />
                     </div>

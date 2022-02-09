@@ -66,24 +66,6 @@ label{
 }
 
 
-.submit{
-  background-image: url("./images/submit.png");
-  width:170px;
-  height:170px
-}
-
-.back{
-  background-image: url("./images/back.png");
-  width:170px;
-  height:170px
-}
-
-.logout{
-  background-image: url("./images/logout.png");
-  width:120px;
-  height:120px
-}
-
 
 
 .submit, .back, .logout{
@@ -232,8 +214,6 @@ img:hover{
 .sidebarA, .sidebarC{
   display:flex;
   flex-direction: column;
-  /* margin-left: 20px;
-  margin-bottom: 20px; */
   margin: 50px 10px 20px 20px;
   padding: 10px;
   background-color: #1a0d00de;
@@ -268,7 +248,7 @@ img:hover{
   margin: 10px;
 }
 
-.edit{
+/* .edit{
   background-image: url("./images/edit2.png");
   width: 100%;
   height: 60px;
@@ -278,17 +258,18 @@ img:hover{
   background-repeat: no-repeat;
   background-position:right;
   padding-right: -20px;
-}
+} */
 
 .name{
-  font-size: 1.5em;
+  font-size: 1.7em;
   line-height: 1em;
-  margin:3px 10px;
+  margin:3px 10px 11px;
 }
 
 .bio{
+  font-size: 1.3em;
   width: 200px;
-  font-weight: 400;
+  font-weight: 300;
   font-style: italic;
   margin:0 10px;;
 }
@@ -352,8 +333,14 @@ img:hover{
 }
 
 .info{
+  display: flex;
+  justify-content: space-evenly;
   width: 850px;
   text-align: center;
+}
+
+.marginbutton{
+  margin-bottom: 15px;;
 }
 
 #uploadScriptForm{
@@ -384,12 +371,13 @@ img:hover{
 }
 
 
-.uplLine{
+.uplLine, .searchline{
   display: flex;
+  margin: 5px 0;
 }
-.searchline{
+/* .searchline{
   display: flex;
-}
+} */
 .searchline2{
   display: flex;
   margin-top: 20px;
@@ -423,10 +411,15 @@ img:hover{
   text-align: right;
   padding-right: 5px;;
 }
+.RFall > label{
+  width: 85px;
+  text-align: right;
+  padding-right: 5px;;
+}
 .cast{
   text-align: center;
-  margin-top: 4px;
-  font-size: 1.1em;
+  margin: 24px 0 5px;
+  font-size: 1.7em;
 }
 .inputA{
   width: 630px;
@@ -521,12 +514,12 @@ img:hover{
 }
 
 .udpA{
-  width: 366px;
+  width: 377px;
   font-size: 1.1em;
   height: 1.2em;
   color: #381e01;
   padding: 2px 14px;
-  margin: 3px;
+  margin: 3px 0 15px 0;
   font-family: 'Josefin Sans', sans-serif;
   border-radius: 7px;
 }
@@ -537,28 +530,31 @@ img:hover{
   padding-right: 5px;;
 }
 
-#updateProfileForm{
-  /* background-color: #016888c4; */
+#updateProfileFormA, #updateProfileFormC, #updatePictureFormA, #updatePictureFormC{
   background-color: #1a0d00de;
-  width: 460px;
   margin: auto;
-  padding: 15px 25px 0 15px;;
-  border-radius: 7px;
+  border-radius: 0 0 60px 0;
+  border: 3px solid;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
 }
-#updatePictureForm{
-  /* background-color: #016888c4; */
-  background-color: #1a0d00de;
+
+#updateProfileFormA, #updateProfileFormC{
+  width: 460px;
+  padding: 15px 25px 0 15px;;
+}
+
+#updatePictureFormA, #updatePictureFormC{
   width: 260px;
-  margin: auto;
-  margin-left: 20px;
   padding: 15px 15px 0 15px;;
-  border-radius: 7px;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: space-evenly; */
+  margin-left: 20px;
+}
+#updateProfileFormA, #updatePictureFormA{
+  border-image: linear-gradient(140deg, #2bcfff, #2bceff00) 1;
+}
+
+#updateProfileFormC, #updatePictureFormC{
+  border-image: linear-gradient(140deg, #ff3737, #2bceff00) 1;
 }
 
 .updLine{
@@ -583,6 +579,7 @@ img:hover{
   margin: auto;
 }
 .info3{
+  /* display: flex; */
   width: 850px;
   text-align: center;
   margin: 0;

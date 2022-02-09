@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 
+import back from "../../images/back.png"
 import submit from "../../images/submit.png"
 import QuillSaturated from "../../images/QuillSaturated.png"
 
@@ -58,8 +59,8 @@ function Login ({onLoginSubmit}) {
             <h2 className="message">{msg}</h2>
 
             <div className="buttons">
-                <input className="submit" onClick={handleLoginSubmit} type="submit" value=""/>
-                <Link className="back" to="/" ></Link>
+                <img className="submit" onClick={handleLoginSubmit} type="submit" value="" src={submit} height="100"/>
+                <Link className="back" to="/" ><img src={back} height="100"/></Link>
             </div>
 
         </form>
