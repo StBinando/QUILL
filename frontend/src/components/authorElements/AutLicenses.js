@@ -32,8 +32,11 @@ const AutLicenses = () => {
         <div className="flexiColumn">
             <div className="iconsTop">
                 <Link className="home" to="../main"><img src={home} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="sendscript" to="../addnew"><img src={sendscript} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="scripts" to="../scripts"><img src={allscripts} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="active" to="../licenses"><img src={licenses} height="180"/></Link>
             </div>
             <h2 className="info"></h2>

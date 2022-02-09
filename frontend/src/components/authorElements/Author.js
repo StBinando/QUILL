@@ -13,8 +13,11 @@ function Author () {
         <div className="flexiColumn">
             <div className="iconsTop">
                 <Link className="active" to="../main"><img src={home} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="sendscript" to="../addnew"><img src={sendscript} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="scripts" to="../scripts"><img src={allscripts} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
                 <h3 className="message">{msg}</h3>
             </div>

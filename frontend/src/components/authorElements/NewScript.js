@@ -5,6 +5,7 @@ import allscripts from "../../images/allscripts.png"
 import sendscript from "../../images/sendscript.png"
 import licenses from "../../images/licenses.png"
 import home from "../../images/home.png"
+import submit from "../../images/submit.png"
 
 function NewScript ({onNewScriptSubmit}) {
     let {id} = useParams();
@@ -61,12 +62,15 @@ function NewScript ({onNewScriptSubmit}) {
         <div className="flexiColumn">
             <div className="iconsTop">
                 <Link className="home" to="../main"><img src={home} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="active" to="../addnew"><img src={sendscript} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="scripts" to="../scripts"><img src={allscripts} height="180"/></Link>
+                <p className="spacer"></p>
                 <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
             </div>
-            
-                <h3 className="message">{msg}</h3>
+            {msg ==null ? null : <h3 className="message">{msg}</h3>}
+                
 
 
             <h2 className="info">upload new script</h2>
@@ -84,8 +88,6 @@ function NewScript ({onNewScriptSubmit}) {
                     </div>
 
                     <div class="uplLine">
-
-
                         <div className="uplForm">
                             <label htmlFor="genre">genre</label>
                             <select id="genre" className="inputB" onChange={handleChange}
@@ -164,9 +166,10 @@ function NewScript ({onNewScriptSubmit}) {
                         </div>
                     </div>
 
-                    <div class="uplLinelastheigh">
+                    <div class="uplLine">
                         <input class="pickfile" type="file" name="file" onChange={handleChangeFile} />
-                        <input class="submitfile" onClick={handleSubmit} type="submit" value="upload" />
+                        <img onClick={handleSubmit} src={submit} height="70"/>
+                        {/* <input class="submitfile" onClick={handleSubmit} type="submit" value="upload" /> */}
                     </div>
 
                 </form>

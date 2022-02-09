@@ -8,6 +8,7 @@ import search from "../../images/search.png"
 import licenses from "../../images/licenses.png"
 import home from "../../images/home.png"
 import reset from "../../images/reset.png"
+import submit from "../../images/submit.png"
 
 function Search ({onSearchSubmit, pathResults, setResults, results}) {
     let {id} = useParams();
@@ -81,7 +82,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                     </div>
                 </div>
                 
-                    <h3 className="message">{msg}</h3>
+                    {msg==null ? null : <h3 className="message">{msg}</h3>}
 
 
                 <h2 className="info">search scripts</h2>
@@ -91,23 +92,24 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
 
                     <form id="searchform">
                         <div class="searchline">
-                            <div class="uplForm" id="upltitle">
+                            <div class="searchField" id="upltitle">
                                 <label htmlFor="title">title</label>
                                 <input className="searchA" onChange={handleChange}
                                 name="title" id="title" type="text"
                                 value={formData.title} placeholder="any" />
                             </div>
-                        </div>
-
-                        <div class="searchline">
-                            <div className="searchfield">
+                            <div className="searchField">
                                 <label htmlFor="authorname">author</label>
-                                <input className="searchB" onChange={handleChange}
+                                <input className="inputB" onChange={handleChange}
                                 name="authorname" id="authorname" type="text"
                                 value={formData.authorname} placeholder="any" />
                             </div>
-                            <div className="searchfield">
-                            <label htmlFor="genre">genre</label>
+                        </div>
+                        
+                        <div class="searchline">
+
+                            <div className="searchField">
+                                <label htmlFor="genre">genre</label>
                                 <select id="genre" className="inputB" onChange={handleChange}
                                 name="genre" id="genre" type="text"
                                 value={formData.genre}>
@@ -120,7 +122,8 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                                     <option value="experimantal">experimantal</option>
                                 </select>
                             </div>
-                            <div className="searchfield">
+
+                            <div className="searchField">
                             <label htmlFor="language">language</label>
                                 <select id="language" className="inputB" onChange={handleChange}
                                 name="language" id="language" type="text"
@@ -134,116 +137,111 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                                     <option value="German">German</option>
                                     <option value="Polish">Polish</option>
                                 </select>
+
+
                             </div>
 
                         </div>
-                            <div>
-                                <div className="searchfield">
-                                    <label htmlFor="lop">length</label>
-                                    <select id="lop" className="lop" onChange={handleChange}
-                                    name="lop" id="lop" type="text"
-                                    value={formData.lop}>
+
+                        <div class="searchline">
+                            <div className="searchField">
+                                <label htmlFor="lop">length</label>
+                                <select id="lop" className="inputB" onChange={handleChange}
+                                name="lop" id="lop" type="text"
+                                value={formData.lop}>
+                                    <option value="gte">equal or more than</option>
+                                    <option value="lte">equal or less than</option>
+                                </select>
+                                <div className="searchField">
+                                    <input className="inputNo" onChange={handleChange}
+                                    name="length" id="length" type="number"
+                                    value={formData.length} placeholder="any" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <p class="cast">cast / characters</p>
+                        <div class="searchline">
+                            <div className="searchfield2">
+                                <div>
+                                    <label htmlFor="mop">males</label>
+                                    <select id="mop" className="inputC" onChange={handleChange}
+                                    name="mop" id="mop" type="text"
+                                    value={formData.mop}>
+                                        <option value="eq">exactly</option>
+                                        <option value="gt">more than</option>
+                                        <option value="lt">less than</option>
+                                    </select>
+                                </div>
+                                <input className="inputNo" onChange={handleChange}
+                                name="m" id="m" type="number"
+                                value={formData.m} placeholder="any" />
+                            </div>
+
+                            <div className="searchfield2">
+                                <div>
+                                    <label htmlFor="fop">females</label>
+                                    <select id="fop" className="inputC" onChange={handleChange}
+                                    name="fop" id="fop" type="text"
+                                    value={formData.fop}>
+                                        <option value="eq">exactly</option>
+                                        <option value="gt">more than</option>
+                                        <option value="lt">less than</option>
+                                    </select>
+                                </div>
+                                <input className="inputNo" onChange={handleChange}
+                                name="f" id="f" type="number"
+                                value={formData.f} placeholder="any" />
+                            </div>
+
+                            <div className="searchfield2">
+                                <div>
+                                    <label htmlFor="nop">neutral</label>
+                                    <select id="nop" className="inputC" onChange={handleChange}
+                                    name="nop" id="nop" type="text"
+                                    value={formData.nop}>
+                                        <option value="eq">exactly</option>
+                                        <option value="gt">more than</option>
+                                        <option value="lt">less than</option>
+                                    </select>
+                                </div>
+                                <input className="inputNo" onChange={handleChange}
+                                name="n" id="n" type="number"
+                                value={formData.n} placeholder="any" />
+                            </div>
+
+                            <div className="searchfield2">
+                                <div>
+                                    <label htmlFor="cop">total</label>
+                                    <select id="cop" className="inputB" onChange={handleChange}
+                                    name="cop" id="cop" type="text"
+                                    value={formData.cop}>
                                         <option value="gte">equal or more than</option>
                                         <option value="lte">equal or less than</option>
                                     </select>
                                 </div>
-
-
-
-                                <div className="searchfield">
-                                    <label htmlFor="length"> </label>
-                                    <input className="searchNo" onChange={handleChange}
-                                    name="length" id="length" type="number"
-                                    value={formData.length} placeholder="any" />
-                                </div>
-
-
-
+                                <input className="inputNo" onChange={handleChange}
+                                name="cast" id="cast" type="number"
+                                value={formData.cast} placeholder="any" />
                             </div>
-                        {/* <p class="cast">cast / characters</p> */}
-                        <div class="searchline">
-                            <div>
-                            <div className="searchfield">
-                                <label htmlFor="mop">males</label>
-                                <select id="mop" className="mop" onChange={handleChange}
-                                name="mop" id="mop" type="text"
-                                value={formData.mop}>
-                                    <option value="eq">exactly</option>
-                                    <option value="gt">more than</option>
-                                    <option value="lt">less than</option>
-                                </select>
-                                </div>
-                                <div className="searchfield">
-                                    <input className="searchNo" onChange={handleChange}
-                                    name="m" id="m" type="number"
-                                    value={formData.m} placeholder="any" />
-                                </div>
-                            </div>
+                        </div>
 
+                        <div class="searchline2">
                             <div>
-                                <div className="searchfield">
-                                    <label htmlFor="fop">females</label>
-                                    <select id="fop" className="fop" onChange={handleChange}
-                                    name="fop" id="fop" type="text"
-                                    value={formData.fop}>
-                                    <option value="eq">exactly</option>
-                                    <option value="gt">more than</option>
-                                    <option value="lt">less than</option>
-                                </select>
-                                </div>
-                                <div className="searchfield">
-                                    <input className="searchNo" onChange={handleChange}
-                                    name="f" id="f" type="number"
-                                    value={formData.f} placeholder="any" />
-                                </div>
-                            </div>
-
-                            <div>
-                                <div className="searchfield">
-                                    <label htmlFor="nop">neutral</label>
-                                    <select id="nop" className="nop" onChange={handleChange}
-                                name="nop" id="nop" type="text"
-                                value={formData.nop}>
-                                    <option value="eq">exactly</option>
-                                    <option value="gt">more than</option>
-                                    <option value="lt">less than</option>
-                                </select>
-                                </div>
-                                <div className="searchfield">
-                                    <input className="searchNo" onChange={handleChange}
-                                    name="n" id="n" type="number"
-                                    value={formData.n} placeholder="any" />
-                                </div>
-
-                                <div className="searchfield">
-                                    <label htmlFor="cop">total</label>
-                                    <select id="cop" className="cop" onChange={handleChange}
-                                    name="cop" id="cop" type="text"
-                                    value={formData.cop}>
-                                    <option value="gte">equal or more than</option>
-                                    <option value="lte">equal or less than</option>
-                                </select>
-                                </div>
-                                <div className="searchfield">
-                                    <input className="searchNo" onChange={handleChange}
-                                    name="cast" id="cast" type="number"
-                                    value={formData.cast} placeholder="any" />
-                                </div>
-                            </div>
-
-                            <div>
-                            <label htmlFor="royaltyfree">royalty free only?</label>
-                                    <select id="royaltyfree" className="royaltyfree" onChange={handleChange}
-                                    name="royaltyfree" id="royaltyfree" type="royaltyfree"
-                                    value={formData.royaltyfree}>
+                                <label htmlFor="royaltyfree">royalty free only?</label>
+                                <select id="royaltyfree" className="RF" onChange={handleChange}
+                                name="royaltyfree" id="royaltyfree" type="royaltyfree"
+                                value={formData.royaltyfree}>
                                     <option value="false">no</option>
                                     <option value="true">yes</option>
                                 </select>
                             </div>
+                            <img onClick={handleSubmit} src={submit} height="70"/>
+                            {/* <input class="submitfile" onClick={handleSubmit} type="submit" value="SEARCH" /> */}
                         </div>
-
-                        <input class="submitfile" onClick={handleSubmit} type="submit" value="SEARCH" />
-
+                        {/* <div class="searchline"> */}
+                        {/* </div> */}
                     </form>
                 </div>
 
@@ -278,7 +276,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                 <h2 className="info">RESULTS: {results.length}</h2>
                 {!results.length && <h2 className="message">there are no scripts matching your search</h2>}
                 {results.length && 
-                    <div className="scriptList">
+                    <div className="resultsList">
                         <p className="listtitle title">title</p>
                         <p className="listgenre title">genre</p>
                         <p className="listlanguage title">language</p>

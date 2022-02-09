@@ -24,7 +24,9 @@ function DeleteUser ({profile}) {
         <div className="flexiColumn">
             <div className="iconsTop">
                 <Link className="home" to="../main"><img src={home} height="140"/></Link>
+                <p className="spacer"></p>
                 <Link className="profile" to="../profile"><img src={edit} height="140"/></Link>
+                <p className="spacer"></p>
                 <img className="active" src={deleteprofile} height="140"/>
             </div>
 

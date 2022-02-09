@@ -16,7 +16,9 @@ body {
 }
 
 html {
-  height: 100%
+  height: 90%;
+  max-width: 80%;
+margin:auto
 }
 
 
@@ -216,6 +218,7 @@ img:hover{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: -50px;
 }
 
 .logosmall{
@@ -229,8 +232,9 @@ img:hover{
 .sidebarA, .sidebarC{
   display:flex;
   flex-direction: column;
-  margin-left: 20px;
-  margin-bottom: 20px;
+  /* margin-left: 20px;
+  margin-bottom: 20px; */
+  margin: 50px 10px 20px 20px;
   padding: 10px;
   background-color: #1a0d00de;
   color:#f1dabf;
@@ -290,20 +294,29 @@ img:hover{
 }
 
 
-.scriptList{
+.scriptList, .resultsList{
   display:grid;
   width:810px;
   margin: auto;
   padding:15px;
-  grid-template-columns: 6fr 3fr 3.5fr 1.4fr 1fr 1fr 1fr 2fr;
-  grid-template-areas:
-  "title genre language length m f n licenses";
   background-color: #1a0d00de;
   line-height: 2em;
   border: 3px solid;
-  border-image: linear-gradient(140deg, #2bcfff, #2bceff00) 1;
   border-radius: 0 0 60px 0;
   margin-bottom: 10px;
+}
+
+.scriptList{
+  border-image: linear-gradient(140deg, #2bcfff, #2bceff00) 1;
+  grid-template-columns: 6fr 3fr 3.5fr 1.4fr 1fr 1fr 1fr 2fr;
+  grid-template-areas:
+  "title genre language length m f n licenses";
+}
+.resultsList{
+  border-image: linear-gradient(140deg, #ff3737, #2bceff00) 1;
+  grid-template-columns: 6fr 3fr 3.5fr 1.4fr 1fr 1fr 1fr 2fr;
+  grid-template-areas:
+  "title genre language length m f n licenses";
 }
 
 .title{
@@ -364,21 +377,49 @@ img:hover{
   padding: 15px;
   border-radius: 7px;
   display: flex;
-  /* flex-direction: column; */
-  /* justify-content: space-evenly; */
+  flex-direction: column;
+  border: 3px solid;
+  border-radius: 0 0 60px 0;
+  border-image: linear-gradient(140deg, #ff3737, #2bceff00) 1;
 }
+
 
 .uplLine{
   display: flex;
+}
+.searchline{
+  display: flex;
+}
+.searchline2{
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .uplForm{
   display: flex;
   align-items: center;
 }
+.searchField{
+  display: flex;
+  align-items: center;
+}
+.searchfield2{
+  display: flex;
+  flex-direction: column;
+  max-width: 165px;
+  align-items: center;
+  margin: 0 20px;
+}
 
 .uplForm > label{
   width: 117px;
+  text-align: right;
+  padding-right: 5px;;
+}
+.searchField > label{
+  width: 85px;
   text-align: right;
   padding-right: 5px;;
 }
@@ -398,9 +439,19 @@ img:hover{
   border-radius: 7px;
 }
 .inputB{
-  width: 130px;
+  width: 161px;
   font-size: 1.1em;
-  height: 1.2em;
+  height: 1.5em;
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+}
+.inputC{
+  width: 135px;
+  font-size: 1.1em;
+  height: 1.5em;
   color: #381e01;
   padding: 2px 14px;
   margin: 3px;
@@ -418,11 +469,22 @@ img:hover{
   border-radius: 7px;
   text-align: center;
 }
+.RF{
+  width: 80px;
+  font-size: 1.1em;
+  height: 1.6em;
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+  text-align: center;
+}
 .textarea{
   font-size: 1.1em;
   color: #381e01;
   padding: 2px 14px;
-  margin: 3px;
+  margin: 3px 3px 15px 3px;
   font-family: 'Josefin Sans', sans-serif;
   border-radius: 7px;
 }
@@ -435,6 +497,7 @@ img:hover{
   margin-left: 55px;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.1em;
+  background-color: #00a00d;
 }
 .pickfile{
   font-family: 'Josefin Sans', sans-serif;
@@ -451,6 +514,7 @@ img:hover{
   width: 400px;
   padding:3px 0;
 }
+
 #file-upload-button{
   font-family: 'Josefin Sans', sans-serif;
   height: 2em;
@@ -509,6 +573,7 @@ img:hover{
   display: flex;
   align-items: center;
 }
+
 .buttons2{
   display: flex;
   height: 150px;
@@ -534,5 +599,17 @@ img:hover{
 }
 
 .spacer{
-  width: 50px;
+  width: 25px;
 }
+
+.searchA{
+  width: 387px;
+  font-size: 1.1em;
+  height: 1.2em;
+  color: #381e01;
+  padding: 2px 14px;
+  margin: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 7px;
+}
+
