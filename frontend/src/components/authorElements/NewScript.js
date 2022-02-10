@@ -61,19 +61,19 @@ function NewScript ({onNewScriptSubmit}) {
     return (
         <div className="flexiColumn">
             <div className="iconsTop">
-                <Link className="home" to="../main"><img src={home} height="180"/></Link>
+                <Link className="home hover desaturate" to="../main"><img src={home} height="180"/></Link>
                 <p className="spacer"></p>
-                <Link className="active" to="../addnew"><img src={sendscript} height="180"/></Link>
+                <Link className="sendscript hover" to="../addnew"><img src={sendscript} height="180"/></Link>
                 <p className="spacer"></p>
-                <Link className="scripts" to="../scripts"><img src={allscripts} height="180"/></Link>
+                <Link className="scripts hover desaturate" to="../scripts"><img src={allscripts} height="180"/></Link>
                 <p className="spacer"></p>
-                <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
+                <Link className="licenses hover desaturate" to="../licenses"><img src={licenses} height="180"/></Link>
             </div>
-            {msg ==null ? null : <h3 className="message">{msg}</h3>}
-                
-
 
             <h2 className="info">upload new script</h2>
+
+            {msg ==null ? null : <h3 className="message">{msg}</h3>}
+                
 
             <div className="uploadScript">
 
@@ -126,8 +126,8 @@ function NewScript ({onNewScriptSubmit}) {
                         <div className="uplForm">
                             <label htmlFor="length">approx. lenght (minutes)</label>
                             <input className="inputNo" onChange={handleChange}
-                            name="length" id="length" type="number"
-                            value={formData.length} />
+                            name="length" id="length" type="number" min="0" step="10"
+                            value={formData.length} placeholder="" />
                         </div>
 
 
@@ -137,22 +137,22 @@ function NewScript ({onNewScriptSubmit}) {
                     <p class="cast">cast / characters</p>
                     <div class="uplLine">
                         <div className="uplForm">
-                            <label htmlFor="m">males</label>
+                            <label htmlFor="m">male</label>
                             <input className="inputNo" onChange={handleChange}
-                            name="m" id="m" type="number"
-                            value={formData.m} placeholder="0" />
+                            name="m" id="m" type="number" min="0"
+                            value={formData.m} placeholder="" />
                         </div>
                         <div className="uplForm">
-                            <label htmlFor="f">females</label>
+                            <label htmlFor="f">female</label>
                             <input className="inputNo" onChange={handleChange}
-                            name="f" id="f" type="number"
-                            value={formData.f} placeholder="0" />
+                            name="f" id="f" type="number" min="0"
+                            value={formData.f} placeholder="" />
                         </div>
                         <div className="uplForm">
                             <label htmlFor="n">neutral</label>
                             <input className="inputNo" onChange={handleChange}
-                            name="n" id="n" type="number"
-                            value={formData.n} placeholder="0" />
+                            name="n" id="n" type="number" min="0"
+                            value={formData.n} placeholder="" />
                         </div>
                     </div>
 
@@ -168,8 +168,7 @@ function NewScript ({onNewScriptSubmit}) {
 
                     <div class="uplLine">
                         <input class="pickfile" type="file" name="file" onChange={handleChangeFile} />
-                        <img onClick={handleSubmit} src={submit} height="70"/>
-                        {/* <input class="submitfile" onClick={handleSubmit} type="submit" value="upload" /> */}
+                        <img className="submit hover" onClick={handleSubmit} src={submit} height="70"/>
                     </div>
 
                 </form>

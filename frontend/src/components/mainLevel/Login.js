@@ -5,8 +5,8 @@ import back from "../../images/back.png"
 import submit from "../../images/submit.png"
 import QuillSaturated from "../../images/QuillSaturated.png"
 
-function Login ({onLoginSubmit}) {
-    const[msg, setMsg] = useState();
+function Login ({onLoginSubmit, setMsg, msg}) {
+    // const[msg, setMsg] = useState();
     const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -28,12 +28,16 @@ function Login ({onLoginSubmit}) {
         }
     }
 
+    const clearMsg = () => {
+        setMsg(null);
+    }
 
     return (
         <div className="main">
         <img className="logobig" src={QuillSaturated}/>
         <p className="slogan">From Script to Stage</p>
 
+                {msg==null ? null : <h3 className="message">{msg}</h3>}
 
         <form className="loginForm">
             <div>
@@ -56,11 +60,10 @@ function Login ({onLoginSubmit}) {
                 placeholder="enter password"/>
             </div>
 
-            <h2 className="message">{msg}</h2>
 
             <div className="buttons">
-                <img className="submit" onClick={handleLoginSubmit} type="submit" value="" src={submit} height="100"/>
-                <Link className="back" to="/" ><img src={back} height="100"/></Link>
+                <img className="submit hover" onClick={handleLoginSubmit} type="submit" value="" src={submit} height="100"/>
+                <Link onClick={clearMsg} className="back hover" to="/" ><img src={back} height="100"/></Link>
             </div>
 
         </form>

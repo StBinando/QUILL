@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
-
+// =================================================
+// =========    not yet implemented    =============
+// =====    to display a single script    ==========
+// =================================================
 const Script = () => {
     return (
         <>

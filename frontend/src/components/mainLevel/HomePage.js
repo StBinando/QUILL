@@ -12,8 +12,8 @@ const HomePage = () => {
             <p className="slogan">From Script to Stage</p>
 
             <div className="main2">
-                <Link className="icon1" to="/login" ><img src={login} height="200"/></Link>
-                <Link className="icon1" to="/signup" ><img src={newuser} height="200"/></Link>
+                <Link className="icon1 hover desaturate" to="/login" ><img src={login} height="250"/></Link>
+                <Link className="icon1 hover desaturate" to="/signup" ><img src={newuser} height="250"/></Link>
             </div>
         </div>
     );

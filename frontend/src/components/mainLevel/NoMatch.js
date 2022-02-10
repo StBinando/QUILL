@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 
+import notfound from "../../images/notfound.png"
+
 const NoMatch = () => {
     return (
         <>
-            <h1>page not found</h1>
-            <Link to="../main" >back to main</Link>
+            <Link to="../main" ><img className="confirm hover" src={notfound} width="450px"/></Link>
             <br/>
         </>
     );

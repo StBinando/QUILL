@@ -25,7 +25,7 @@ const SideBar = ({profile, image}) => {
 
                 <p className="name">{profile.name}</p>
                 <p className="bio">{profile.bio}</p>
-                <Link className="edit" to="profile" ><img src={edit2} height="100"/></Link>
+                <Link className="edit hover" to="profile" ><img src={edit2} height="80"/></Link>
             </aside>
         </div>
 

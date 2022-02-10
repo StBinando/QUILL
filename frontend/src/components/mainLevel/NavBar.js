@@ -42,7 +42,7 @@ const NavBar = ({setProfile, profile, setImage, image}) => {
                 <img className="logosmall" src={QuillSaturated} height="160"/>
                 <p className="slogan">From Script to Stage</p>
                 <div className="navbuttons">
-                    <Link Link className="logout"to="logout" ><img src={logout} height="140"/></Link>
+                    <Link Link className="logout hover"to="logout" ><img src={logout} height="150"/></Link>
                 </div>
             </div>
 

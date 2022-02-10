@@ -34,7 +34,6 @@ function Profile ({onUpdateProfileSubmit, profile, onSubmitPicture}) {
         event.preventDefault();
         formData.userType = profile.userType;
         formData.id = profile.id;
-        // formData.profilePic = null;
         onUpdateProfileSubmit(formData, id);
     }
 
@@ -43,12 +42,11 @@ function Profile ({onUpdateProfileSubmit, profile, onSubmitPicture}) {
     return (
         <div className="flexiColumn">
             <div className="iconsTop">
-                <Link className="home" to="../main"><img src={home} height="140"/></Link>
+                <Link className="home hover desaturate" to="../main"><img src={home} height="140"/></Link>
                 <p className="spacer"> </p>
-                <img className="active" src={edit} height="140"/>
+                <img className="edit hover" src={edit} height="140"/>
                 <p className="spacer"> </p>
-                {/* <Link className="active" to="../main"><img src={edit} height="140"/></Link> */}
-                <Link className="delete" to="../delete"><img src={deleteprofile} height="140"/></Link>
+                <Link className="delete hover desaturate" to="../delete"><img src={deleteprofile} height="140"/></Link>
             </div>
 
             <h2 className="info">edit profile info</h2>
@@ -69,12 +67,12 @@ function Profile ({onUpdateProfileSubmit, profile, onSubmitPicture}) {
                             <label htmlFor="bio">bio</label>
                             <textarea className="textarea" onChange={handleChange}
                             name="bio" id="bio" type="text"
-                            rows="5" cols="43"
+                            rows="7" cols="43"
                             value={formData.bio} placeholder={profile.bio} />
                         </div>
                     </div>
                     <div className="buttons2">
-                        <img className="confirm" onClick={handleSubmit} src={submit} width="130px"/>
+                        <img className="confirm hover" onClick={handleSubmit} src={submit} width="130px"/>
                     </div>
                 </form>
 

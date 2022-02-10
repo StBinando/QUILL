@@ -14,16 +14,14 @@ const Logout = () => {
     return (
         <div className="flexiColumn">
 
-            <img src={logout} width="520px" height="230px" width="230"/>
+            <img className="image" src={logout} width="300px"/>
 
             <h2 className="info3">do you confirm you want to log out?</h2>
 
             <div className="buttons">
-                {/* <button className="confirm" onClick={handleConfirm} type="submit" value=""> */}
-                    <img className="confirm" onClick={handleConfirm} src={confirm} width="130px"/>
-                {/* </button> */}
+                    <img className="confirm hover" onClick={handleConfirm} src={confirm} width="130px"/>
                 <Link className="cancel" to="../main" >
-                    <img className="cancel" src={cancel} width="130px"/>
+                    <img className="cancel hover" src={cancel} width="130px"/>
                 </Link>
             </div>
 

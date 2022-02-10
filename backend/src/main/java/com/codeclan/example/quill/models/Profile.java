@@ -34,7 +34,7 @@ public class Profile {
     @OneToOne(cascade = CascadeType.REMOVE)
     private ProfilePicture profilepicture;
 
-    @OneToMany(mappedBy = "profile")//, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)//, cascade = CascadeType.REMOVE)
     //@OneToMany
     private List<Script> scripts;
 

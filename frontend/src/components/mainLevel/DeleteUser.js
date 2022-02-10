@@ -23,19 +23,19 @@ function DeleteUser ({profile}) {
     return (
         <div className="flexiColumn">
             <div className="iconsTop">
-                <Link className="home" to="../main"><img src={home} height="140"/></Link>
-                <p className="spacer"></p>
-                <Link className="profile" to="../profile"><img src={edit} height="140"/></Link>
-                <p className="spacer"></p>
-                <img className="active" src={deleteprofile} height="140"/>
+                <Link className="home hover desaturate" to="../main"><img src={home} height="140"/></Link>
+                <p className="spacer"> </p>
+                <Link className="edit hover desaturate" to="../profile"><img src={edit} height="140"/></Link>
+                <p className="spacer"> </p>
+                <Link className="delete hover" to="../delete"><img src={deleteprofile} height="140"/></Link>
             </div>
 
             <h2 className="info3">do you confirm you want to DELETE your account?</h2>
 
             <div className="buttons">
-                    <img className="confirm" onClick={handleConfirm} src={del} width="130px"/>
+                    <img className="confirm hover" onClick={handleConfirm} src={del} width="130px"/>
                 <Link className="cancel" to="../profile" >
-                    <img className="cancel" src={cancel} width="130px"/>
+                    <img className="cancel hover" src={cancel} width="130px"/>
                 </Link>
             </div>
 

@@ -49,7 +49,7 @@ function Signup ({onSignupSubmit}) {
 
         <form className="signupForm">
 
-            <h2 className="message">{msg}</h2>
+            {msg==null ? null : <h2 className="message">{msg}</h2>}
 
             <div className="signupData">
                 
@@ -100,11 +100,11 @@ function Signup ({onSignupSubmit}) {
                     <div className="signupTypeButtons">
                         <label className="userType">
                             <input type="radio" id="userType1" name="userType" value="AUTHOR" onChange={handleChange}/>   
-                            <img className="authorType" src={authorimg} height="160px"/>
+                            <img className="authorType hover desaturate" src={authorimg} height="160px"/>
                         </label>
                         <label className="userType">
                         <input type="radio" id="userType2" name="userType" value="COMPANY" onChange={handleChange}/>
-                            <img className="companyType" src={companyimg} height="160px"/>
+                            <img className="companyType hover desaturate" src={companyimg} height="160px"/>
                         </label>
                     </div>
                 </div>
@@ -113,12 +113,11 @@ function Signup ({onSignupSubmit}) {
 
 
             <div className="buttons">
-                <img className="submit" onClick={handleSignupSubmit} type="submit" value="" src={submit} height="100"/>
-                <Link className="back" to="/" ><img src={back} height="100"/></Link>
+                <img className="submit hover" onClick={handleSignupSubmit} type="submit" value="" src={submit} height="100"/>
+                <Link className="back hover" to="/" ><img src={back} height="100"/></Link>
             </div>
 
         </form>
-
     </div>
     );
 }

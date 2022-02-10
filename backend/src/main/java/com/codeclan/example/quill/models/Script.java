@@ -42,7 +42,7 @@ public class Script {
     @Column(name = "royaltyfree")
     private Boolean royaltyfree;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 10000)
     private String description;
 
     @Column(name = "tags")

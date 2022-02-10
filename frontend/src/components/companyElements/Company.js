@@ -10,15 +10,19 @@ function Company () {
 
     return (
         <div className="flexiColumn">
+        <div className="iconsTop">
             <div className="iconsTop">
-                <Link className="active" to="../main"><img src={home} height="180"/></Link>
+                <Link className="home hover" to="../main"><img src={home} height="180"/></Link>
                 <p className="spacer"></p>
-                <Link className="search" to="../search"><img src={search} height="180"/></Link>
+                <Link className="search hover desaturate" to="../search"><img src={search} height="180"/></Link>
                 <p className="spacer"></p>
-                <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
+                <Link className="licenses hover desaturate" to="../licenses"><img src={licenses} height="180"/></Link>
                 <h3 className="message">{msg}</h3>
             </div>
-            <h2 className="info">Select an option</h2>
+        </div>
+        
+            {msg==null ? null : <h3 className="message">{msg}</h3>}
+            <h2 className="info">select an option</h2>
 
         </div>
 

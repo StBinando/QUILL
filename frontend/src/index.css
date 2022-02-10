@@ -105,6 +105,9 @@ label{
 .message{
   color:#e21717;
   font-size: 2em;
+  background-color: #1a0d00de;
+  padding: 10px 30px;
+  border-radius: 30px;
 }
 /* ============================== */
 /* ============================== */
@@ -120,12 +123,12 @@ label{
   display: flex;
   justify-content:space-between;
   align-items: center;
-  margin-top: 40px;
+  /* margin-top: -40px; */
 }
 
 .logobig{
-  height: 220px;
-  margin: 60px 0 30px 0;
+  height: 300px;
+  margin: 60px 0 10px 0;
 }
 
 .slogan{
@@ -142,12 +145,13 @@ label{
   margin: 20px 10px;
 }
 .icon1{
-  height:200px;
+  /* height:200px; */
   margin: 30px;
 }
 .signupForm{
   display:flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 .signupData{
@@ -158,9 +162,13 @@ label{
   flex-direction: column;
   align-items: center;
   margin: 0 50px;
+  
 }
 .signupTypeButtons{
   display: flex;
+  justify-content: space-between;
+  width:390px;
+  /* margin-top: 20px; */
 }
 
 [type=radio]{
@@ -169,11 +177,15 @@ label{
 
 [type=radio] + img{
   cursor: pointer;
-  filter: saturate(0);
 }
-img:hover{
+
+.hover:hover{
   filter: saturate(1);
-  transform: scale(120%);
+  transform: scale(130%);
+}
+
+.desaturate{
+  filter: saturate(0);
 }
 
 [type=radio]:checked + img{
@@ -188,7 +200,8 @@ img:hover{
 
 .buttons{
   width: 320px;
-  height: 150px;;
+  height: 150px;
+  margin-top: 20px;
 }
 
 /* ============================== */
@@ -214,6 +227,7 @@ img:hover{
 .sidebarA, .sidebarC{
   display:flex;
   flex-direction: column;
+  align-items: center;
   margin: 50px 10px 20px 20px;
   padding: 10px;
   background-color: #1a0d00de;
@@ -233,32 +247,16 @@ img:hover{
 }
 
 .picture{
-  border: 1px black solid;
   border-radius: 20px;
-  background-image: url("./images/picture.png");
-  width: 200px;
-  height: 200px;
-  background-size:contain;
-  background-color: #5842047c;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: 0px 0px;
-  display: flex;
-  align-content: center;
   margin: 10px;
 }
-
-/* .edit{
-  background-image: url("./images/edit2.png");
-  width: 100%;
-  height: 60px;
-  background-size:contain;
-  background-color: transparent;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position:right;
-  padding-right: -20px;
-} */
+.picture2{
+  margin: -7px
+}
+.edit{
+margin: 20px;
+text-align: center;
+}
 
 .name{
   font-size: 1.7em;
@@ -271,7 +269,7 @@ img:hover{
   width: 200px;
   font-weight: 300;
   font-style: italic;
-  margin:0 10px;;
+  margin:0 20px;
 }
 
 
@@ -289,22 +287,31 @@ img:hover{
 
 .scriptList{
   border-image: linear-gradient(140deg, #2bcfff, #2bceff00) 1;
-  grid-template-columns: 6fr 3fr 3.5fr 1.4fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 6fr 3fr 3.5fr 1.4fr 1fr 1fr 1fr;
   grid-template-areas:
-  "title genre language length m f n licenses";
+  "title genre language length m f n pdf";
 }
 .resultsList{
   border-image: linear-gradient(140deg, #ff3737, #2bceff00) 1;
-  grid-template-columns: 6fr 3fr 3.5fr 1.4fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 5fr 3fr 3.5fr 3.3fr 3.5fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
-  "title genre language length m f n licenses";
+  "title author genre language length m f n pdf";
 }
 
-.title{
+.titleA, .titleC{
   font-weight: 700;
   font-size: 1.3rem;
   text-align: center;
   margin-bottom: 7px;
+}
+
+.titleA{
+  color: #2bcfff;
+  border-bottom: 2px solid #2bcfff;
+}
+.titleC{
+  color: #ff3737;
+  border-bottom: 2px solid #ff3737;
 }
 
 .Lgenre, .Llanguage, .Llength, .Lm, .Lf, .Ln, .Llicenses{
@@ -327,9 +334,13 @@ img:hover{
   margin-top: 0;
 }
 
-.active{
-  filter: saturate(0);
-  cursor:auto;
+.Ltitle{
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.active:hover{
+  transform: scale(100%);
 }
 
 .info{
@@ -337,6 +348,7 @@ img:hover{
   justify-content: space-evenly;
   width: 850px;
   text-align: center;
+  margin-top:0;
 }
 
 .marginbutton{
@@ -373,6 +385,7 @@ img:hover{
 
 .uplLine, .searchline{
   display: flex;
+  align-items: center;
   margin: 5px 0;
 }
 /* .searchline{
@@ -477,7 +490,7 @@ img:hover{
   font-size: 1.1em;
   color: #381e01;
   padding: 2px 14px;
-  margin: 3px 3px 15px 3px;
+  margin: 3px 3px -20px 3px;
   font-family: 'Josefin Sans', sans-serif;
   border-radius: 7px;
 }
@@ -497,7 +510,7 @@ img:hover{
   font-size: 1.2em;
   height: 1.2em;
   width: 400px;
-  margin: 30px 126px 0;
+  margin: 50px 126px 33px;
   padding:3px 0;
 }
 .pickfileimg{
@@ -588,6 +601,13 @@ img:hover{
 .uploadScript{
   display: flex;
   margin: 0 5px;
+}
+
+.uploadpicture{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -85px;
 }
 .udpateprofile{
   display: flex;

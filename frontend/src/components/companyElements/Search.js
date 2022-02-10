@@ -10,6 +10,8 @@ import home from "../../images/home.png"
 import reset from "../../images/reset.png"
 import submit from "../../images/submit.png"
 import back from "../../images/back.png"
+import pdf from "../../images/pdf.png"
+
 
 
 function Search ({onSearchSubmit, pathResults, setResults, results}) {
@@ -63,6 +65,11 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
         window.location.reload();
      }
 
+     const backToSearch = ()=>{
+         setShowResults(false);
+         refreshPage();
+     }
+
 
 //  =====================================================================================
 //  ===============                                                  ====================
@@ -75,11 +82,11 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
             <div className="flexiColumn">
                 <div className="iconsTop">
                     <div className="iconsTop">
-                        <Link className="home" to="../main"><img src={home} height="180"/></Link>
+                        <Link className="home hover desaturate" to="../main"><img src={home} height="180"/></Link>
                         <p className="spacer"></p>
-                        <Link className="active" to="../search"><img src={search} height="180"/></Link>
+                        <Link className="search hover" to="../search"><img src={search} height="180"/></Link>
                         <p className="spacer"></p>
-                        <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
+                        <Link className="licenses hover desaturate" to="../licenses"><img src={licenses} height="180"/></Link>
                         <h3 className="message">{msg}</h3>
                     </div>
                 </div>
@@ -146,7 +153,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
 
                         <div class="searchline">
                             <div className="searchField">
-                                <label htmlFor="lop">length</label>
+                                <label htmlFor="lop">approx. lenght (minutes)</label>
                                 <select id="lop" className="inputB" onChange={handleChange}
                                 name="lop" id="lop" type="text"
                                 value={formData.lop}>
@@ -155,7 +162,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                                 </select>
                                 <div className="searchField">
                                     <input className="inputNo" onChange={handleChange}
-                                    name="length" id="length" type="number"
+                                    name="length" id="length" type="number" min="0" step="10"
                                     value={formData.length} placeholder="any" />
                                 </div>
                             </div>
@@ -166,7 +173,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                         <div class="searchline">
                             <div className="searchfield2">
                                 <div>
-                                    <label htmlFor="mop">males</label>
+                                    <label htmlFor="mop">male</label>
                                     <select id="mop" className="inputC" onChange={handleChange}
                                     name="mop" id="mop" type="text"
                                     value={formData.mop}>
@@ -176,13 +183,13 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                                     </select>
                                 </div>
                                 <input className="inputNo" onChange={handleChange}
-                                name="m" id="m" type="number"
+                                name="m" id="m" type="number" min="0"
                                 value={formData.m} placeholder="any" />
                             </div>
 
                             <div className="searchfield2">
                                 <div>
-                                    <label htmlFor="fop">females</label>
+                                    <label htmlFor="fop">female</label>
                                     <select id="fop" className="inputC" onChange={handleChange}
                                     name="fop" id="fop" type="text"
                                     value={formData.fop}>
@@ -192,7 +199,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                                     </select>
                                 </div>
                                 <input className="inputNo" onChange={handleChange}
-                                name="f" id="f" type="number"
+                                name="f" id="f" type="number" min="0"
                                 value={formData.f} placeholder="any" />
                             </div>
 
@@ -208,7 +215,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                                     </select>
                                 </div>
                                 <input className="inputNo" onChange={handleChange}
-                                name="n" id="n" type="number"
+                                name="n" id="n" type="number" min="0"
                                 value={formData.n} placeholder="any" />
                             </div>
 
@@ -223,7 +230,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                                     </select>
                                 </div>
                                 <input className="inputNo" onChange={handleChange}
-                                name="cast" id="cast" type="number"
+                                name="cast" id="cast" type="number" min="0"
                                 value={formData.cast} placeholder="any" />
                             </div>
                         </div>
@@ -242,8 +249,8 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
                             <p className="spacer"></p>
                             <p className="spacer"></p>
                             <p className="spacer"></p>
-                            <img onClick={handleSubmit} src={submit} height="70"/>
-                            <img onClick={refreshPage} src={reset} height="70"/>
+                            <img className="hover"onClick={handleSubmit} src={submit} height="70"/>
+                            <img className="hover" onClick={refreshPage} src={reset} height="70"/>
                             <p className="spacer"></p>
                         </div>
                     </form>
@@ -268,40 +275,42 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
             <div className="flexiColumn">
                 <div className="iconsTop">
                     <div className="iconsTop">
-                        <Link className="home" to="../main"><img src={home} height="180"/></Link>
+                        <Link className="home hover desaturate" to="../main"><img src={home} height="180"/></Link>
                         <p className="spacer"></p>
-                        <Link className="active" to="../search"><img src={search} height="180"/></Link>
+                        <Link className="search hover" to="../search"><img src={search} height="180"/></Link>
                         <p className="spacer"></p>
-                        <Link className="licenses" to="../licenses"><img src={licenses} height="180"/></Link>
+                        <Link className="licenses hover desaturate" to="../licenses"><img src={licenses} height="180"/></Link>
                         <h3 className="message">{msg}</h3>
                     </div>
                 </div>
                 
                 <div className="info marginbutton">
                     <h2 >results: {results.length} script(s)</h2>
-                    <img onClick={()=>{setShowResults(false)}} src={back} height="70"/>
+                    <img className="hover" onClick={()=>{backToSearch()}} src={back} height="70"/>
                 </div>
                 {!results.length && <h2 className="message">there are no scripts matching your search</h2>}
                 {results.length && 
                     <div className="resultsList">
-                        <p className="listtitle title">title</p>
-                        <p className="listgenre title">genre</p>
-                        <p className="listlanguage title">language</p>
-                        <p className="listlength title">length</p>
-                        <p className="listm title">M</p>
-                        <p className="listf title">F</p>
-                        <p className="listn title">N</p>
-                        <p className="listlicenses title">licen.</p>
+                        <p className="listtitle titleC">title</p>
+                        <p className="listauthor titleC">author</p>
+                        <p className="listgenre titleC">genre</p>
+                        <p className="listlanguage titleC">language</p>
+                        <p className="listlength titleC">length</p>
+                        <p className="listm titleC">M</p>
+                        <p className="listf titleC">F</p>
+                        <p className="listn titleC">N</p>
+                        <p className="listpdf titleC"></p>
                         {results.map((script, index) => (
                             <>
-                                <a href={`http://localhost:8080/scripts/pdf/${script.id}`} >{script.title}</a>
+                                <p className="Ltitle" title={script.description}>{script.title}</p>
+                                <p className="Lauthor">{script.authorname}</p>
                                 <p className="Lgenre">{script.genre}</p>
                                 <p className="Llanguage">{script.language}</p>
                                 <p className="Llength">{script.length}</p>
                                 <p className="Lm">{script.m}</p>
                                 <p className="Lf">{script.f}</p>
                                 <p className="Ln">{script.n}</p>
-                                <Link className="Llicenses" to="../script/licenses">licenses</Link>
+                                <a className="pdfdwl hover desaturate" title={`download ${script.title}.pdf file`} href={`http://localhost:8080/scripts/pdf/${script.id}`} ><img src={pdf} width="50"/></a>
                             </>
                         ))}
                     </div>

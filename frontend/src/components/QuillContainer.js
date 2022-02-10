@@ -50,6 +50,7 @@ const [profile, setProfile] = useState(
     const [dpftoupload, setPdftoupload] = useState(null);
     const [image, setImage] = useState();
     const [pathResults, setPathResults] = useState();
+    const [msg, setMsg] = useState();
 
 // =============      END     =================
 // =============    STATES    =================
@@ -61,7 +62,11 @@ const handleLoginSubmit = (data) => {
     fetch("http://localhost:8080/user/validate?user="+data.username+"&pwd="+data.password)
     .then(response => response.json())
     .then(data => {
-        window.location.href = `http://localhost:3000/${data.userType}/${data.id}/main`;
+        if(data.id){
+            window.location.href = `http://localhost:3000/${data.userType}/${data.id}/main`;
+        } else {
+            setMsg("username and/or password incorrect");
+        }
     })
 }
 
@@ -76,7 +81,7 @@ const handleLoginSubmit = (data) => {
         fetch("http://localhost:8080/user/create/"+data.userType,{method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then(data => {
-            window.location.href = `http://localhost:3000/${data.userType}/${data.id}/main`;
+            window.location.href = `http://localhost:3000/${data.userType}/${data.id}/profile`;
         })
     }
 
@@ -184,7 +189,7 @@ const handleLoginSubmit = (data) => {
 {/* ================  LOG IN / CREATE NEW ACCOUNT  ============== */}
           <Route path='/' index element={<HomePage/>} />
           <Route path='signup' element={<Signup onSignupSubmit={handleSignUpSubmit}/>} />
-          <Route path='login' element={<Login onLoginSubmit={handleLoginSubmit}/>} />
+          <Route path='login' element={<Login onLoginSubmit={handleLoginSubmit} setMsg={setMsg} msg={msg}/>} />
           {/* <Route path='login' element={<Login onLoginSubmit={handleLoginSubmit} msg={msg}/>} /> */}
 
 {/* ================            AUTHOR             ============== */}
