@@ -7,37 +7,17 @@ import home from "../../images/home.png"
 import underconstruction from "../../images/underconstruction.png"
 
 const AutLicenses = () => {
-    // const licenses =[
-    //     {
-    //         "id": 1,
-    //         "title": "Lysistrata",
-    //         "company": "companyName",
-    //         "issued": "12-02-2021",
-    //         "active": true,
-    //         "expires": "12-02-2022"
-    //     },
-    //     {
-    //         "id": 1,
-    //         "title": "Lysistrata",
-    //         "company": "companyName",
-    //         "issued": "12-02-2021",
-    //         "active": true,
-    //         "expires": "12-02-2022"
-    //     }
-    // ]
-
-
 
     return (
         <div className="flexiColumn">
             <div className="iconsTop">
-                <Link className="home" to="../main"><img src={home} height="180"/></Link>
+                <Link className="home hover desaturate" to="../main"><img src={home} height="180"/></Link>
                 <p className="spacer"></p>
-                <Link className="sendscript" to="../addnew"><img src={sendscript} height="180"/></Link>
+                <Link className="sendscript hover desaturate" to="../addnew"><img src={sendscript} height="180"/></Link>
                 <p className="spacer"></p>
-                <Link className="scripts" to="../scripts"><img src={allscripts} height="180"/></Link>
+                <Link className="scripts hover desaturate" to="../scripts"><img src={allscripts} height="180"/></Link>
                 <p className="spacer"></p>
-                <Link className="active" to="../licenses"><img src={licenses} height="180"/></Link>
+                <Link className="licenses hover" to="../licenses"><img src={licenses} height="180"/></Link>
             </div>
             <h2 className="info"></h2>
 
