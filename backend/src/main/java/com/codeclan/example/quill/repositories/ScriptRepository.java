@@ -118,6 +118,5 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
             Boolean royaltyfree,
             String tag);
 
-//    @Transactional
-//    List<Script> findByAuthorId(Long id);
+
 }

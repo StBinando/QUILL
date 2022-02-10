@@ -36,6 +36,7 @@ function Search ({onSearchSubmit, pathResults, setResults, results}) {
 
 
     const fetchResults = () => {
+        console.log(pathResults);
         fetch(pathResults)
         .then(response => response.json())
         .then(data => {

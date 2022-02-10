@@ -94,7 +94,7 @@ const handleLoginSubmit = (data) => {
             "http://localhost:8080/author/"+id +"/script/add" +
             "?title="+_data.title +
             "&authorname=" + profile.name +
-            "&genre=" + _data.genre.toUpperCase() +
+            "&genre=" + _data.genre +
             "&length=" + _data.length +
             "&m=" + _data.m + 
             "&f=" + _data.f +
@@ -146,7 +146,7 @@ const handleLoginSubmit = (data) => {
         window.location.href = `http://localhost:3000/${profile.userType}/${profile.id}/profile`;
     }
 
-// ================= GET SEARCH PARAMS ========================
+// ================= GET SEARCH PATH ========================
     const handleSearchSubmit= (data, id) => {
         if (data.length == "") {data.length = -1}
         if (data.m == "") {data.m = -1}
@@ -159,15 +159,20 @@ const handleLoginSubmit = (data) => {
             "&authorname=" + data.authorname +
             "&genre=" + data.genre +
             "&lop=" + data.lop + "&length=" + 
-                (data.length==-1 ? data.length : (data.length + "&" + data.lop + data.length)) +
+                (data.length==-1 ? data.length : 
+                    (data.length + "&" + data.lop + data.length)) +
             "&mop=" + data.mop + "&m=" + 
-                (data.m==-1 ? data.m : (data.m + "&" + data.mop + data.m)) +
+                (data.m==-1 ? data.m : 
+                    (data.m + "&" + data.mop + data.m)) +
             "&fop=" + data.fop + "&f=" +
-                (data.f==-1 ? data.f : (data.f + "&" + data.fop + data.f)) +
+                (data.f==-1 ? data.f : 
+                    (data.f + "&" + data.fop + data.f)) +
             "&nop=" + data.nop + "&n=" +
-                (data.n==-1 ? data.n : (data.n + "&" + data.nop + data.n)) +
+                (data.n==-1 ? data.n : 
+                    (data.n + "&" + data.nop + data.n)) +
             "&cop=" + data.cop + "&cast=" +
-                (data.cast==-1 ? data.cast : (data.cast + "&" + data.cop + data.cast)) +
+                (data.cast==-1 ? data.cast : 
+                    (data.cast + "&" + data.cop + data.cast)) +
             "&language=" + data.language +
             "&royaltyfree=" + data.royaltyfree +
             "&tags=");

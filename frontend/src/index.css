@@ -234,6 +234,7 @@ label{
   color:#f1dabf;
   border: 3px solid;
   border-radius: 0 0 60px 0;
+  max-width: 240px;
 }
 .sidebarA{
   border-image: linear-gradient(140deg, #2bcfff, #2bceff00) 1;
