@@ -2,24 +2,24 @@ import { useState , useEffect} from "react";
 
 import { BrowserRouter, Route, Routes, Navigate, useNavigate, useParams } from 'react-router-dom';
 
-import Login from "../components/mainLevel/Login";
-import Signup from "../components/mainLevel/Signup";
-import NoMatch from "../components/mainLevel/NoMatch";
-import HomePage from "../components/mainLevel/HomePage"
-import Profile from "../components/mainLevel/Profile";
-import Author from "../components/authorElements/Author";
-import Company from "../components/companyElements/Company";
-import NavBar from "../components/mainLevel/NavBar";
-import Logout from "../components/mainLevel/Logout";
-import DeleteUser from "../components/mainLevel/DeleteUser";
-import Picture from "../components/mainLevel/Picture";
-import AutScripts from "../components/authorElements/AutScripts";
-import AutLicenses from "../components/authorElements/AutLicenses";
-import NewScript from "../components/authorElements/NewScript";
-import Search from "../components/companyElements/Search";
-import Results from "../components/companyElements/Results";
-import CompLicenses from "../components/companyElements/CompLicenses";
-import Script from "../components/companyElements/Script";
+import Login from "./mainLevel/Login";
+import Signup from "./mainLevel/Signup";
+import NoMatch from "./mainLevel/NoMatch";
+import HomePage from "./mainLevel/HomePage"
+import Profile from "./mainLevel/Profile";
+import Author from "./authorElements/Author";
+import Company from "./companyElements/Company";
+import NavBar from "./mainLevel/NavBar";
+import Logout from "./mainLevel/Logout";
+import DeleteUser from "./mainLevel/DeleteUser";
+import Picture from "./mainLevel/Picture";
+import AutScripts from "./authorElements/AutScripts";
+import AutLicenses from "./authorElements/AutLicenses";
+import NewScript from "./authorElements/NewScript";
+import Search from "./companyElements/Search";
+import Results from "./companyElements/Results";
+import CompLicenses from "./companyElements/CompLicenses";
+import Script from "./companyElements/Script";
 
 
 
